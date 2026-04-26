@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Scorecard — Macaco Cidadão{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2>Scorecard de Responsividade</h2>
+  <span class="subtitle">Denúncias publicadas por vereador</span>
+</div>
+
+{% if stats %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Vereador</th>
+      <th>Total</th>
+      <th>✅ Cobrou</th>
+      <th>⚠️ Respondeu</th>
+      <th>❌ Ignorou</th>
+      <th>⏳ Pendente</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for nome, s in stats.items()|sort(attribute='1.total', reverse=true) %}
+    <tr>
+      <td>{{ nome }}</td>
+      <td><strong>{{ s.total }}</strong></td>
+      <td class="verde">{{ s.cobrou }}</td>
+      <td class="amarelo">{{ s.respondeu_sem_acao }}</td>
+      <td class="vermelho">{{ s.ignorou }}</td>
+      <td>{{ s.pendente }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="empty">Nenhuma denúncia publicada ainda.</p>
+{% endif %}
+{% endblock %}

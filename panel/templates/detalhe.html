@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}{{ denuncia.protocolo }} — Macaco Cidadão{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <a href="{{ url_for('painel') }}" class="back-link">← Voltar</a>
+  <h2>{{ denuncia.protocolo }}</h2>
+  <span class="status-badge status-{{ denuncia.status }}">{{ denuncia.status.replace('_', ' ').title() }}</span>
+</div>
+
+<div class="grid-2">
+  <!-- Dados da denúncia -->
+  <div class="card">
+    <h3>Dados da Denúncia</h3>
+    <dl>
+      <dt>Recebida em</dt><dd>{{ denuncia.criado_em.strftime('%d/%m/%Y às %H:%M') }}</dd>
+      <dt>Categoria</dt><dd>{{ denuncia.categoria.replace('_', ' ').title() if denuncia.categoria else '—' }}</dd>
+      <dt>Bairro</dt><dd>{{ denuncia.bairro or '—' }}</dd>
+      <dt>Regional</dt><dd>{{ denuncia.regional or '—' }}</dd>
+      <dt>Mídia</dt><dd>{{ denuncia.tipo_midia or '—' }}</dd>
+      {% if denuncia.latitude %}
+      <dt>GPS</dt><dd>{{ "%.6f"|format(denuncia.latitude) }}, {{ "%.6f"|format(denuncia.longitude) }}</dd>
+      {% endif %}
+      <dt>Descrição</dt><dd>{{ denuncia.descricao_usuario or '—' }}</dd>
+    </dl>
+  </div>
+
+  <!-- Vereador e secretaria -->
+  <div class="card">
+    <h3>Destinatários</h3>
+    <dl>
+      <dt>Vereador</dt><dd>{{ denuncia.vereador_nome or '—' }}</dd>
+      <dt>E-mail gabinete</dt><dd>{{ denuncia.vereador_email or '—' }}</dd>
+      <dt>Instagram</dt><dd>{{ denuncia.vereador_instagram or '—' }}</dd>
+      <dt>Twitter/X</dt><dd>{{ denuncia.vereador_twitter or '—' }}</dd>
+      <dt>Secretaria</dt><dd>{{ denuncia.secretaria_nome or '—' }}</dd>
+      <dt>E-mail secretaria</dt><dd>{{ denuncia.secretaria_email or '—' }}</dd>
+    </dl>
+  </div>
+</div>
+
+<!-- Texto do post -->
+<div class="card">
+  <h3>Texto do Post (Instagram/X)</h3>
+  {% if denuncia.status == 'aguardando_triagem' %}
+  <form method="POST" action="{{ url_for('aprovar', denuncia_id=denuncia.id) }}">
+    <textarea name="texto_post" rows="6">{{ denuncia.texto_post_sugerido or '' }}</textarea>
+    <h3 style="margin-top:1rem">Minuta do E-mail Formal</h3>
+    <textarea name="minuta_email" rows="14">{{ denuncia.minuta_email or '' }}</textarea>
+    <div class="form-row">
+      <input type="text" name="notas" placeholder="Notas do moderador (opcional)">
+      <button type="submit" class="btn btn-success">✅ Aprovar</button>
+    </div>
+  </form>
+  <form method="POST" action="{{ url_for('rejeitar', denuncia_id=denuncia.id) }}" style="margin-top:.5rem">
+    <input type="text" name="motivo" placeholder="Motivo da rejeição" required>
+    <button type="submit" class="btn btn-danger">❌ Rejeitar</button>
+  </form>
+  {% else %}
+  <pre class="pre-text">{{ denuncia.texto_post_sugerido or '—' }}</pre>
+  {% endif %}
+</div>
+
+<!-- Publicação -->
+{% if denuncia.status == 'aprovada' %}
+<div class="card card-highlight">
+  <h3>📢 Publicar + Enviar E-mail</h3>
+  <p>Publique manualmente no Instagram/X e cole o link abaixo. O e-mail formal será enviado simultaneamente.</p>
+  <form method="POST" action="{{ url_for('publicar', denuncia_id=denuncia.id) }}">
+    <input type="url" name="link_post" placeholder="https://instagram.com/p/..." required style="width:100%">
+    <button type="submit" class="btn btn-success" style="margin-top:.5rem">🚀 Confirmar publicação + enviar e-mail</button>
+  </form>
+</div>
+{% endif %}
+
+{% if denuncia.status == 'publicada' %}
+<div class="card">
+  <h3>Publicação</h3>
+  <dl>
+    <dt>Link do post</dt><dd><a href="{{ denuncia.link_post }}" target="_blank">{{ denuncia.link_post }}</a></dd>
+    <dt>Publicada em</dt><dd>{{ denuncia.publicada_em.strftime('%d/%m/%Y %H:%M') if denuncia.publicada_em else '—' }}</dd>
+    <dt>E-mail enviado</dt><dd>{{ '✅ Sim' if denuncia.email_enviado else '❌ Não' }}</dd>
+  </dl>
+
+  <!-- Registro de resposta -->
+  <h3 style="margin-top:1.5rem">Registro de Resposta do Vereador</h3>
+  <form method="POST" action="{{ url_for('registrar_resposta', denuncia_id=denuncia.id) }}">
+    <textarea name="resposta" rows="4" placeholder="Descreva a resposta ou ação documentada...">{{ denuncia.resposta_vereador or '' }}</textarea>
+    <div class="form-row">
+      <select name="classificacao_scorecard">
+        <option value="">— Classificação scorecard —</option>
+        <option value="cobrou_prefeitura" {% if denuncia.classificacao_scorecard == 'cobrou_prefeitura' %}selected{% endif %}>✅ Cobrou a Prefeitura</option>
+        <option value="respondeu_sem_acao" {% if denuncia.classificacao_scorecard == 'respondeu_sem_acao' %}selected{% endif %}>⚠️ Respondeu sem ação</option>
+        <option value="ignorou" {% if denuncia.classificacao_scorecard == 'ignorou' %}selected{% endif %}>❌ Ignorou</option>
+      </select>
+      <label><input type="checkbox" name="resolvida"> Problema resolvido</label>
+      <button type="submit" class="btn">Salvar</button>
+    </div>
+  </form>
+</div>
+{% endif %}
+{% endblock %}

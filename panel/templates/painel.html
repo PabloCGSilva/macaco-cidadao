@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Painel — Macaco Cidadão{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2>Denúncias</h2>
+</div>
+
+<div class="tabs">
+  <a href="?status=aguardando_triagem" class="tab {% if status == 'aguardando_triagem' %}active{% endif %}">
+    Triagem <span class="badge">{{ contagens.aguardando_triagem }}</span>
+  </a>
+  <a href="?status=aprovada" class="tab {% if status == 'aprovada' %}active{% endif %}">
+    Aprovadas <span class="badge">{{ contagens.aprovada }}</span>
+  </a>
+  <a href="?status=publicada" class="tab {% if status == 'publicada' %}active{% endif %}">
+    Publicadas <span class="badge">{{ contagens.publicada }}</span>
+  </a>
+  <a href="?status=rejeitada" class="tab {% if status == 'rejeitada' %}active{% endif %}">
+    Rejeitadas <span class="badge">{{ contagens.rejeitada }}</span>
+  </a>
+</div>
+
+{% if denuncias %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Protocolo</th>
+      <th>Recebida</th>
+      <th>Categoria</th>
+      <th>Bairro</th>
+      <th>Mídia</th>
+      <th>Vereador</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for d in denuncias %}
+    <tr>
+      <td><code>{{ d.protocolo }}</code></td>
+      <td>{{ d.criado_em.strftime('%d/%m %H:%M') }}</td>
+      <td>{{ d.categoria.replace('_', ' ').title() if d.categoria else '—' }}</td>
+      <td>{{ d.bairro or '—' }}</td>
+      <td>{{ d.tipo_midia or '—' }}</td>
+      <td>{{ d.vereador_nome or '—' }}</td>
+      <td><a href="{{ url_for('detalhe', denuncia_id=d.id) }}" class="btn btn-sm">Ver</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="empty">Nenhuma denúncia neste status.</p>
+{% endif %}
+{% endblock %}
