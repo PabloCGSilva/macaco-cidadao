@@ -1,0 +1,92 @@
+[
+  {
+    "nome": "Álvaro Damião",
+    "partido": "PDT",
+    "email_gabinete": "alvaro.damiao@cmbh.mg.gov.br",
+    "instagram": "@alvarodamiao_vereador",
+    "twitter": "@alvarodamiao",
+    "bairros_base": ["Venda Nova", "Jardim Leblon", "Floramar", "Tupi", "Céu Azul"],
+    "votos_totais_2024": 7842
+  },
+  {
+    "nome": "Bruno Pedralva",
+    "partido": "PSD",
+    "email_gabinete": "bruno.pedralva@cmbh.mg.gov.br",
+    "instagram": "@brunopedralva",
+    "twitter": "@brunopedralva",
+    "bairros_base": ["Centro", "Funcionários", "Savassi", "Lourdes", "Santo Agostinho"],
+    "votos_totais_2024": 9231
+  },
+  {
+    "nome": "Cláudio do Mundo Novo",
+    "partido": "Solidariedade",
+    "email_gabinete": "claudio.mundonovo@cmbh.mg.gov.br",
+    "instagram": "@claudiomundonovo",
+    "twitter": null,
+    "bairros_base": ["Nordeste", "Ribeiro de Abreu", "São Paulo", "Aarão Reis"],
+    "votos_totais_2024": 5103
+  },
+  {
+    "nome": "Duda Salabert",
+    "partido": "PDT",
+    "email_gabinete": "duda.salabert@cmbh.mg.gov.br",
+    "instagram": "@dudasalabert",
+    "twitter": "@dudasalabert",
+    "bairros_base": ["Pampulha", "Castelo", "Santa Amélia", "Bandeirantes", "Ouro Preto"],
+    "votos_totais_2024": 12500
+  },
+  {
+    "nome": "Gabriel Azevedo",
+    "partido": "MDB",
+    "email_gabinete": "gabriel.azevedo@cmbh.mg.gov.br",
+    "instagram": "@gabrielazevedo_bh",
+    "twitter": "@gabrielazevedoBH",
+    "bairros_base": ["Barreiro", "Jatobá", "Cardoso", "Lindeia", "Milionários"],
+    "votos_totais_2024": 8670
+  },
+  {
+    "nome": "Henrique Braga",
+    "partido": "PT",
+    "email_gabinete": "henrique.braga@cmbh.mg.gov.br",
+    "instagram": "@henriquebraga_pt",
+    "twitter": null,
+    "bairros_base": ["Noroeste", "Padre Eustáquio", "Colégio Batista", "Carlos Prates"],
+    "votos_totais_2024": 4890
+  },
+  {
+    "nome": "Irlan Melo",
+    "partido": "PP",
+    "email_gabinete": "irlan.melo@cmbh.mg.gov.br",
+    "instagram": "@irlanmelo",
+    "twitter": null,
+    "bairros_base": ["Oeste", "Estoril", "Buritis", "Alto Caiçaras", "Jaraguá"],
+    "votos_totais_2024": 6340
+  },
+  {
+    "nome": "Jorge Santos",
+    "partido": "Republicanos",
+    "email_gabinete": "jorge.santos@cmbh.mg.gov.br",
+    "instagram": "@jorgesantos_vereador",
+    "twitter": "@jorgesantosVER",
+    "bairros_base": ["Leste", "Horto", "Floresta", "Santa Tereza", "Sagrada Família"],
+    "votos_totais_2024": 5720
+  },
+  {
+    "nome": "Léia Moreira",
+    "partido": "PSDB",
+    "email_gabinete": "leia.moreira@cmbh.mg.gov.br",
+    "instagram": "@leiamoreira",
+    "twitter": null,
+    "bairros_base": ["Norte", "Jaqueline", "Mantiqueira", "Santa Mônica", "Ribeiro de Abreu"],
+    "votos_totais_2024": 4210
+  },
+  {
+    "nome": "Mateus Simões",
+    "partido": "Novo",
+    "email_gabinete": "mateus.simoes@cmbh.mg.gov.br",
+    "instagram": "@mateussimoes",
+    "twitter": "@mateussimoes",
+    "bairros_base": ["Centro-Sul", "Mangabeiras", "Luxemburgo", "Sion", "Belvedere"],
+    "votos_totais_2024": 10800
+  }
+]

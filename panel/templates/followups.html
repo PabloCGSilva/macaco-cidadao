@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Follow-ups — Macaco Cidadão{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2>Follow-ups Pendentes</h2>
+  <span class="subtitle">Alertas gerados automaticamente pelo scheduler</span>
+</div>
+
+{% if followups %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Gerado em</th>
+      <th>Tipo</th>
+      <th>Protocolo</th>
+      <th>Alerta</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for fu in followups %}
+    <tr>
+      <td>{{ fu.criado_em.strftime('%d/%m %H:%M') }}</td>
+      <td>
+        {% if fu.tipo == 'alerta_3d' %}<span class="status-badge status-aprovada">3 dias</span>
+        {% elif fu.tipo == 'cobranca_10d' %}<span class="status-badge status-aguardando_triagem">10 dias úteis</span>
+        {% else %}{{ fu.tipo }}{% endif %}
+      </td>
+      <td>
+        <a href="{{ url_for('detalhe', denuncia_id=fu.denuncia_id) }}">
+          <code>{{ fu.denuncia.protocolo }}</code>
+        </a>
+      </td>
+      <td>{{ fu.texto }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('marcar_followup_publicado', fu_id=fu.id) }}">
+          <button class="btn btn-sm btn-success">✅ Publicado</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="empty">Nenhum follow-up pendente.</p>
+{% endif %}
+{% endblock %}

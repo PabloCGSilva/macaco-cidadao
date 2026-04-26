@@ -16,6 +16,7 @@ class Denuncia(db.Model):
     # Mídia
     tipo_midia = db.Column(db.String(20))  # photo, video, audio, text
     arquivo_path = db.Column(db.String(500))
+    midia_hash = db.Column(db.String(64))
     descricao_usuario = db.Column(db.Text)
 
     # Geolocalização
@@ -50,6 +51,9 @@ class Denuncia(db.Model):
     link_post = db.Column(db.String(500))
     email_enviado_em = db.Column(db.DateTime)
     email_enviado = db.Column(db.Boolean, default=False)
+
+    # Notificação ao usuário
+    telegram_notificado = db.Column(db.Boolean, default=False)
 
     # Follow-up
     resposta_vereador = db.Column(db.Text)

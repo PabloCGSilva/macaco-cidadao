@@ -7,6 +7,7 @@ from functools import wraps
 from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify
 from db.models import db, Denuncia, FollowUp
 from notifier.email_sender import enviar_email_formal
+from notifier.telegram_notifier import notificar_usuario
 import config
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
@@ -19,6 +20,9 @@ with app.app_context():
     db.create_all()
     from ai.vereador_mapper import seed_vereadores_exemplo
     seed_vereadores_exemplo(app)
+
+from notifier.scheduler import iniciar_scheduler
+_scheduler = iniciar_scheduler(app)
 
 
 def login_required(f):
@@ -109,15 +113,23 @@ def publicar(denuncia_id):
     denuncia.publicada_em = datetime.utcnow()
     denuncia.status = "publicada"
 
-    ok = enviar_email_formal(denuncia)
-    if ok:
+    ok_email = enviar_email_formal(denuncia)
+    if ok_email:
         denuncia.email_enviado = True
         denuncia.email_enviado_em = datetime.utcnow()
-        flash(f"Denúncia publicada e e-mail enviado — {denuncia.protocolo}", "sucesso")
-    else:
-        flash(f"Denúncia publicada mas houve erro no envio do e-mail — verifique os logs.", "aviso")
+
+    ok_tg = notificar_usuario(denuncia.telegram_user_id, denuncia.protocolo, link_post)
+    if ok_tg:
+        denuncia.telegram_notificado = True
 
     db.session.commit()
+
+    if ok_email and ok_tg:
+        flash(f"Publicada, e-mail enviado e usuário notificado — {denuncia.protocolo}", "sucesso")
+    elif ok_email:
+        flash(f"Publicada e e-mail enviado. Falha ao notificar usuário no Telegram.", "aviso")
+    else:
+        flash(f"Publicada. Erro no e-mail formal — verifique os logs.", "aviso")
     return redirect(url_for("detalhe", denuncia_id=denuncia_id))
 
 
@@ -175,6 +187,28 @@ def scorecard():
             vereadores_stats[nome]["pendente"] += 1
 
     return render_template("scorecard.html", stats=vereadores_stats)
+
+
+@app.route("/followups")
+@login_required
+def followups():
+    pendentes = (
+        FollowUp.query
+        .filter_by(publicado=False)
+        .order_by(FollowUp.criado_em.desc())
+        .all()
+    )
+    return render_template("followups.html", followups=pendentes)
+
+
+@app.route("/followup/<int:fu_id>/marcar-publicado", methods=["POST"])
+@login_required
+def marcar_followup_publicado(fu_id):
+    fu = FollowUp.query.get_or_404(fu_id)
+    fu.publicado = True
+    db.session.commit()
+    flash("Follow-up marcado como publicado.", "sucesso")
+    return redirect(url_for("followups"))
 
 
 if __name__ == "__main__":

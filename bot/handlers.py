@@ -15,6 +15,7 @@ from db.protocolo import gerar_protocolo
 from ai.classifier import classificar
 from ai.vereador_mapper import vereador_por_bairro
 from bot.exif_extractor import extrair_gps
+from bot.media_store import salvar_midia, hash_midia
 import config
 
 logger = logging.getLogger(__name__)
@@ -46,21 +47,27 @@ async def receber_midia(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
     if msg.photo:
         foto = msg.photo[-1]
         file = await foto.get_file()
-        arquivo_bytes = await file.download_as_bytearray()
+        arquivo_bytes = bytes(await file.download_as_bytearray())
         context.user_data["tipo_midia"] = "photo"
-        context.user_data["arquivo_bytes"] = bytes(arquivo_bytes)
-        context.user_data["arquivo_nome"] = f"{foto.file_id}.jpg"
-        coords = extrair_gps(context.user_data["arquivo_bytes"])
+        context.user_data["arquivo_bytes"] = arquivo_bytes
+        context.user_data["midia_hash"] = hash_midia(arquivo_bytes)
+        coords = extrair_gps(arquivo_bytes)
         if coords:
             context.user_data["latitude"] = coords[0]
             context.user_data["longitude"] = coords[1]
     elif msg.video:
+        file = await msg.video.get_file()
+        arquivo_bytes = bytes(await file.download_as_bytearray())
         context.user_data["tipo_midia"] = "video"
-        context.user_data["arquivo_nome"] = f"{msg.video.file_id}.mp4"
+        context.user_data["arquivo_bytes"] = arquivo_bytes
+        context.user_data["midia_hash"] = hash_midia(arquivo_bytes)
     elif msg.voice or msg.audio:
         media = msg.voice or msg.audio
+        file = await media.get_file()
+        arquivo_bytes = bytes(await file.download_as_bytearray())
         context.user_data["tipo_midia"] = "audio"
-        context.user_data["arquivo_nome"] = f"{media.file_id}.ogg"
+        context.user_data["arquivo_bytes"] = arquivo_bytes
+        context.user_data["midia_hash"] = hash_midia(arquivo_bytes)
     elif msg.text and not msg.text.startswith("/"):
         context.user_data["tipo_midia"] = "text"
         context.user_data["descricao"] = msg.text
@@ -122,12 +129,18 @@ async def receber_bairro(update: Update, context: ContextTypes.DEFAULT_TYPE, fla
             resultado.get("categoria", "outros"), ("Ouvidoria PBH", "ouvidoria@pbh.gov.br")
         )
 
+        tipo_midia = context.user_data.get("tipo_midia")
+        arquivo_path = None
+        if tipo_midia in ("photo", "video", "audio") and context.user_data.get("arquivo_bytes"):
+            arquivo_path = salvar_midia(context.user_data["arquivo_bytes"], tipo_midia, protocolo)
+
         denuncia = Denuncia(
             protocolo=protocolo,
             telegram_user_id=str(update.effective_user.id),
             telegram_username=update.effective_user.username,
-            tipo_midia=context.user_data.get("tipo_midia"),
-            arquivo_path=context.user_data.get("arquivo_nome"),
+            tipo_midia=tipo_midia,
+            arquivo_path=arquivo_path,
+            midia_hash=context.user_data.get("midia_hash"),
             descricao_usuario=descricao,
             latitude=context.user_data.get("latitude"),
             longitude=context.user_data.get("longitude"),
