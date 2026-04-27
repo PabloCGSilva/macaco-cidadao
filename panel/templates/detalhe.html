@@ -22,6 +22,15 @@
       <dt>GPS</dt><dd>{{ "%.6f"|format(denuncia.latitude) }}, {{ "%.6f"|format(denuncia.longitude) }}</dd>
       {% endif %}
       <dt>Descrição</dt><dd>{{ denuncia.descricao_usuario or '—' }}</dd>
+      {% if denuncia.grupo_seq and denuncia.grupo_seq > 1 %}
+      <dt>Reincidência</dt>
+      <dd>
+        <span class="status-badge status-aguardando_triagem">⚠️ {{ denuncia.grupo_seq }}ª ocorrência</span>
+        <a href="{{ url_for('detalhe', denuncia_id=denuncia.grupo_id) }}" style="margin-left:.5rem">
+          Ver denúncia original
+        </a>
+      </dd>
+      {% endif %}
     </dl>
   </div>
 
@@ -62,6 +71,36 @@
 </div>
 
 <!-- Publicação -->
+<!-- Obras PBH na mesma regional -->
+{% if obras and obras.total > 0 %}
+<div class="card">
+  <h3>📋 Obras PBH na Regional {{ denuncia.regional }} — categoria relacionada</h3>
+  <p style="color:var(--muted);font-size:.85rem;margin-bottom:.75rem">
+    {{ obras.total }} registro(s) encontrado(s). Fonte: {{ obras.fonte }}
+    {% if obras.atualizado_em %} — atualizado {{ obras.atualizado_em }}{% endif %}
+  </p>
+  <table class="table">
+    <thead>
+      <tr><th>Nº PO</th><th>Nome</th><th>Temática</th><th>Status</th><th>Empresa</th></tr>
+    </thead>
+    <tbody>
+      {% for o in obras.obras[:10] %}
+      <tr>
+        <td><code>{{ o.numero_po }}</code></td>
+        <td>{{ o.nome }}</td>
+        <td>{{ o.tematica }}</td>
+        <td><span class="status-badge {% if 'Execu' in o.status %}status-aprovada{% elif 'Contr' in o.status %}status-aguardando_triagem{% else %}status-publicada{% endif %}">{{ o.status }}</span></td>
+        <td>{{ o.empresa }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p style="color:var(--muted);font-size:.8rem;margin-top:.5rem">
+    💡 Use esses dados no post: "Existe contrato de manutenção desta regional — o problema persiste."
+  </p>
+</div>
+{% endif %}
+
 {% if denuncia.status == 'aprovada' %}
 <div class="card card-highlight">
   <h3>📢 Publicar + Enviar E-mail</h3>

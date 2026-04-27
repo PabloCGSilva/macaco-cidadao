@@ -1,0 +1,923 @@
+[
+  {
+    "nome": "PHABLO GOMES ALMEIDA",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Jacqueline"
+    ],
+    "votos_total": 39960,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "MARLI APARECIDA DE ARO FERREIRA",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [],
+    "votos_total": 23773,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "IZABELLA LOURENÇA AMORIM ROMUALDO",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Floramar",
+      "Heliópolis"
+    ],
+    "votos_total": 21485,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "FERNANDA ELISA PEREIRA ALTOÉ",
+    "partido": "",
+    "regional": "Centro-Sul",
+    "bairros_base": [
+      "Itapoã"
+    ],
+    "votos_total": 18682,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "Partido Liberal",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [],
+    "votos_total": 18152,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "MARCELA DE LACERDA TRÓPIA",
+    "partido": "",
+    "regional": "Barreiro",
+    "bairros_base": [],
+    "votos_total": 17878,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "PEDRO FARAH ROUSSEFF",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Floramar",
+      "Itapoã",
+      "Jardim Felicidade",
+      "Monte Azul",
+      "Planalto"
+    ],
+    "votos_total": 17595,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "FLAVIA FERREIRA BORJA PINTO",
+    "partido": "",
+    "regional": "Noroeste",
+    "bairros_base": [
+      "Campo Alegre",
+      "Celestino",
+      "Floramar",
+      "Itapoã",
+      "Jacqueline",
+      "Jardim Guanabara",
+      "Monte Azul",
+      "Planalto",
+      "Solimões"
+    ],
+    "votos_total": 16393,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "WILI DOS SANTOS",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [],
+    "votos_total": 14705,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "UNER AUGUSTO DE CARVALHO ALVARENGA",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Jacqueline",
+      "Vila Clóris"
+    ],
+    "votos_total": 13401,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "Partido dos Trabalhadores",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [],
+    "votos_total": 12252,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "IRLAN CHAVES DE OLIVEIRA MELO",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Heliópolis"
+    ],
+    "votos_total": 11660,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "WAGNER MARIANO JUNIOR",
+    "partido": "",
+    "regional": "Barreiro",
+    "bairros_base": [],
+    "votos_total": 11435,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "WAGNER DE JESUS FERREIRA",
+    "partido": "",
+    "regional": "Norte",
+    "bairros_base": [
+      "Floramar",
+      "Heliópolis"
+    ],
+    "votos_total": 10963,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "BRUNO ABREU GOMES",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Celestino",
+      "Centro",
+      "Itapoã",
+      "Jardim Felicidade",
+      "Jardim Guanabara",
+      "Planalto"
+    ],
+    "votos_total": 10870,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "LUCAS DO CARMO NAVARRO",
+    "partido": "",
+    "regional": "Barreiro",
+    "bairros_base": [
+      "Floramar",
+      "Heliópolis",
+      "Jardim Felicidade",
+      "Monte Azul",
+      "Planalto"
+    ],
+    "votos_total": 10753,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "OSVALDO LOPES DE OLIVEIRA JUNIOR",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Floramar",
+      "Heliópolis",
+      "Itapoã",
+      "Jacqueline",
+      "Tupi"
+    ],
+    "votos_total": 10345,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "ELIZETE LOIDE GONÇALVES TAVARES",
+    "partido": "",
+    "regional": "Norte",
+    "bairros_base": [
+      "Campo Alegre",
+      "Floramar",
+      "Itapoã",
+      "Jacqueline",
+      "Jardim Felicidade",
+      "Tupi"
+    ],
+    "votos_total": 10313,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "LUIZA BORGES DULCI",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [],
+    "votos_total": 10169,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "BRAULIO ALVES SILVA LARA",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [],
+    "votos_total": 9992,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "JOSE DE JESUS FERREIRA",
+    "partido": "",
+    "regional": "Barreiro",
+    "bairros_base": [
+      "Centro"
+    ],
+    "votos_total": 9946,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "EDMAR MARTINS CABRAL DA CRUZ",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [
+      "Floramar",
+      "Jacqueline",
+      "Jardim Felicidade",
+      "Jardim Guanabara",
+      "Monte Azul",
+      "Planalto",
+      "Vila Clóris"
+    ],
+    "votos_total": 9813,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "MARIA APARECIDA VILHENA FALABELLA",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Campo Alegre",
+      "Floramar",
+      "Heliópolis",
+      "Itapoã",
+      "Tupi"
+    ],
+    "votos_total": 9530,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "JULIANO LOPES LOBATO",
+    "partido": "",
+    "regional": "Venda Nova",
+    "bairros_base": [
+      "Jardim Guanabara"
+    ],
+    "votos_total": 9328,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "WANDERLEY DE ARAUJO PORTO FILHO",
+    "partido": "",
+    "regional": "Venda Nova",
+    "bairros_base": [],
+    "votos_total": 9261,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "BRUNO MARTUCHELE DE SALES",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [
+      "Tupi"
+    ],
+    "votos_total": 8736,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "MARCOS ANTÔNIO CRISPIM",
+    "partido": "",
+    "regional": "Leste",
+    "bairros_base": [
+      "Heliópolis",
+      "Jacqueline",
+      "Ribeiro De Abreu"
+    ],
+    "votos_total": 8727,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "ENEDINO JOSÉ DE ARRUDA",
+    "partido": "",
+    "regional": "Venda Nova",
+    "bairros_base": [
+      "Floramar",
+      "Jacqueline",
+      "Jardim Guanabara",
+      "Planalto"
+    ],
+    "votos_total": 8668,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "Partido Social Democrático",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [],
+    "votos_total": 8471,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "CLAUDIO MOTA CAMPOS",
+    "partido": "",
+    "regional": "Norte",
+    "bairros_base": [
+      "Floramar",
+      "Heliópolis",
+      "Itapoã",
+      "Jacqueline",
+      "Jardim Felicidade",
+      "Tupi"
+    ],
+    "votos_total": 8261,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "HÉLIO MEDEIROS CORREA",
+    "partido": "",
+    "regional": "Venda Nova",
+    "bairros_base": [
+      "Floramar",
+      "Heliópolis"
+    ],
+    "votos_total": 8121,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "HELTON VIEIRA FERNANDES JUNIOR",
+    "partido": "",
+    "regional": "Barreiro",
+    "bairros_base": [
+      "Centro",
+      "Heliópolis"
+    ],
+    "votos_total": 8013,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "RUBEM RODRIGUES DE OLIVEIRA JUNIOR",
+    "partido": "",
+    "regional": "Leste",
+    "bairros_base": [
+      "Jacqueline"
+    ],
+    "votos_total": 7970,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "MILTON DE FREITAS CARVALHO JÚNIOR",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Campo Alegre",
+      "Jardim Guanabara"
+    ],
+    "votos_total": 7892,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "JANAINA ESTER CARDOSO",
+    "partido": "",
+    "regional": "Barreiro",
+    "bairros_base": [
+      "Tupi"
+    ],
+    "votos_total": 7740,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "PEDRO LUIZ NEVES VICTER ANANIAS",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Heliópolis",
+      "Planalto",
+      "Tupi"
+    ],
+    "votos_total": 7675,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "REPUBLICANOS",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [],
+    "votos_total": 7639,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "CLEITON XAVIER DA SILVA",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [],
+    "votos_total": 7382,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "CIRO DANIEL DE SOUZA PEREIRA DA SILVA",
+    "partido": "",
+    "regional": "Barreiro",
+    "bairros_base": [],
+    "votos_total": 7311,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "BRENO EDUARDO NEVES NOLASCO",
+    "partido": "",
+    "regional": "Norte",
+    "bairros_base": [
+      "Celestino",
+      "Heliópolis",
+      "Itapoã",
+      "Jacqueline",
+      "Planalto",
+      "Tupi"
+    ],
+    "votos_total": 7231,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "JALYSON MAYCON GONCALVES",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [],
+    "votos_total": 7080,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "GLAUTON SANTIAGO FÉLIX DE JESUS",
+    "partido": "",
+    "regional": "Noroeste",
+    "bairros_base": [
+      "Ribeiro De Abreu"
+    ],
+    "votos_total": 7061,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "CHRISTIAN AQUINO COTA",
+    "partido": "",
+    "regional": "Norte",
+    "bairros_base": [],
+    "votos_total": 6828,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "FERNANDO LUIZ COSTA MARCIANO",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Jardim Felicidade"
+    ],
+    "votos_total": 6719,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "JUHLIA ANDRÉ SANTOS",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Floramar",
+      "Itapoã",
+      "Jardim Felicidade",
+      "Monte Azul",
+      "Planalto"
+    ],
+    "votos_total": 6703,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "RUDSON FELIPE DA PAIXÃO",
+    "partido": "",
+    "regional": "Norte",
+    "bairros_base": [
+      "Celestino",
+      "Jacqueline",
+      "Jardim Guanabara",
+      "Planalto",
+      "Tupi"
+    ],
+    "votos_total": 6594,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "ROBERTO ELBO GONÇALVES",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [],
+    "votos_total": 6516,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "MICHELLY CAROLINE LUIZ PEREIRA DE SIQUEIRA",
+    "partido": "",
+    "regional": "Barreiro",
+    "bairros_base": [
+      "Heliópolis"
+    ],
+    "votos_total": 6495,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "LUANA DE LIMA SOUZA",
+    "partido": "",
+    "regional": "Noroeste",
+    "bairros_base": [
+      "Heliópolis",
+      "Planalto",
+      "Tupi",
+      "Vila Clóris"
+    ],
+    "votos_total": 6495,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "CESAR AUGUSTO CUNHA DIAS",
+    "partido": "",
+    "regional": "Noroeste",
+    "bairros_base": [
+      "Itapoã",
+      "Jacqueline",
+      "Jardim Felicidade",
+      "Tupi"
+    ],
+    "votos_total": 6373,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "MARILDA DE CASTRO PORTELA",
+    "partido": "",
+    "regional": "Norte",
+    "bairros_base": [
+      "Jacqueline",
+      "Jardim Guanabara",
+      "Planalto"
+    ],
+    "votos_total": 6279,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "DIEGO DE SOUZA SANCHES",
+    "partido": "",
+    "regional": "Venda Nova",
+    "bairros_base": [],
+    "votos_total": 6278,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "JOÃO ANTONIO CORDEIRO FERNANDES",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Campo Alegre",
+      "Celestino",
+      "Itapoã",
+      "Jardim Guanabara",
+      "Planalto",
+      "Tupi"
+    ],
+    "votos_total": 6171,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "LEONARDO ÂNGELO DA SILVA",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Campo Alegre",
+      "Celestino",
+      "Floramar",
+      "Heliópolis",
+      "Itapoã",
+      "Planalto",
+      "Tupi"
+    ],
+    "votos_total": 6156,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "RAMON BAPTISTA BIBIANO",
+    "partido": "",
+    "regional": "Venda Nova",
+    "bairros_base": [
+      "Celestino",
+      "Floramar",
+      "Jacqueline"
+    ],
+    "votos_total": 5962,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "CLAUDINEY ALVES",
+    "partido": "",
+    "regional": "Venda Nova",
+    "bairros_base": [
+      "Centro"
+    ],
+    "votos_total": 5920,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "GIVANILDO RODRIGUES",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [],
+    "votos_total": 5751,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "DAIANE DIAS COSTA",
+    "partido": "",
+    "regional": "Norte",
+    "bairros_base": [
+      "Floramar",
+      "Itapoã",
+      "Vila Clóris"
+    ],
+    "votos_total": 5693,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "THIAGO GALDINO DE ARAUJO",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [
+      "Celestino",
+      "Planalto",
+      "Vila Clóris"
+    ],
+    "votos_total": 5690,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "WAGNER MESSIAS SILVA",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Vila Clóris"
+    ],
+    "votos_total": 5599,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "NARA LUCIA DE PAULA FAN",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [
+      "Centro",
+      "Jardim Guanabara",
+      "Planalto",
+      "Tupi"
+    ],
+    "votos_total": 5497,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "PABLO TIAGO DE PAULO",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [
+      "Floramar",
+      "Heliópolis",
+      "Jacqueline",
+      "Jardim Felicidade",
+      "Planalto",
+      "Tupi"
+    ],
+    "votos_total": 5493,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "WILSON MELO JUNIOR",
+    "partido": "",
+    "regional": "Noroeste",
+    "bairros_base": [
+      "Floramar",
+      "Jardim Guanabara"
+    ],
+    "votos_total": 5431,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "MARIA DA CONSOLACAO ROCHA",
+    "partido": "",
+    "regional": "Norte",
+    "bairros_base": [
+      "Floramar",
+      "Itapoã"
+    ],
+    "votos_total": 5269,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "CELIO DA ASSUNÇÃO FROIS",
+    "partido": "",
+    "regional": "Norte",
+    "bairros_base": [
+      "Centro",
+      "Solimões"
+    ],
+    "votos_total": 5210,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "REINALDO OLIVEIRA BATISTA",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [
+      "Floramar",
+      "Jacqueline",
+      "Jardim Felicidade",
+      "Jardim Guanabara",
+      "Planalto",
+      "Tupi"
+    ],
+    "votos_total": 5076,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "LEONARDO JOSÉ RODRIGUES MARTINS",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [
+      "Heliópolis",
+      "Jacqueline",
+      "Jardim Guanabara",
+      "Tupi",
+      "Vila Clóris"
+    ],
+    "votos_total": 5065,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "DÁRIO RICARDO BRAGA DE MOURA",
+    "partido": "",
+    "regional": "Oeste",
+    "bairros_base": [
+      "Jardim Guanabara",
+      "Tupi"
+    ],
+    "votos_total": 5041,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "AUTAIR GOMES PEREIRA",
+    "partido": "",
+    "regional": "Nordeste",
+    "bairros_base": [
+      "Jardim Felicidade"
+    ],
+    "votos_total": 4947,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  },
+  {
+    "nome": "HENRIQUE HIGÍDIO BRAGA",
+    "partido": "",
+    "regional": "Venda Nova",
+    "bairros_base": [
+      "Floramar"
+    ],
+    "votos_total": 4863,
+    "instagram": null,
+    "email_gabinete": null,
+    "telefone_gabinete": null
+  }
+]

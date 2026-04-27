@@ -18,7 +18,7 @@ PANEL_PASSWORD = os.getenv("PANEL_PASSWORD", "senha123")
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///macaco_cidadao.db")
 
-CLAUDE_MODEL = "claude-haiku-4-5-20251001"
+ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
 
 CATEGORIAS = [
     "buraco_pavimento",

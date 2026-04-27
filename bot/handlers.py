@@ -12,6 +12,7 @@ from telegram.ext import (
 
 from db.models import db, Denuncia
 from db.protocolo import gerar_protocolo
+from db.agrupamento import buscar_denuncias_anteriores, atribuir_grupo
 from ai.classifier import classificar
 from ai.vereador_mapper import vereador_por_bairro
 from bot.exif_extractor import extrair_gps
@@ -101,7 +102,15 @@ async def receber_bairro(update: Update, context: ContextTypes.DEFAULT_TYPE, fla
         coords = f"{context.user_data['latitude']}, {context.user_data['longitude']}"
 
     try:
-        resultado = classificar(descricao, bairro, tem_midia, coords)
+        # Look up previous complaints before classifying so AI can flag recurrence
+        with flask_app.app_context():
+            anteriores = buscar_denuncias_anteriores(
+                bairro=bairro,
+                categoria="",  # unknown yet — pass bairro-only pre-filter
+                latitude=context.user_data.get("latitude"),
+                longitude=context.user_data.get("longitude"),
+            )
+        resultado = classificar(descricao, bairro, tem_midia, coords, anteriores)
     except Exception as e:
         logger.error("Erro na classificação: %s", e)
         await update.message.reply_text(
@@ -123,6 +132,15 @@ async def receber_bairro(update: Update, context: ContextTypes.DEFAULT_TYPE, fla
 
     with flask_app.app_context():
         protocolo = gerar_protocolo()
+
+        # Refined grouping using confirmed category from classifier
+        categoria_confirmada = resultado.get("categoria", "")
+        anteriores_confirmados = buscar_denuncias_anteriores(
+            bairro=resultado.get("bairro_confirmado", bairro),
+            categoria=categoria_confirmada,
+            latitude=context.user_data.get("latitude"),
+            longitude=context.user_data.get("longitude"),
+        )
 
         vereador = vereador_por_bairro(resultado.get("bairro_confirmado", bairro))
         secretaria_nome, secretaria_email = config.SECRETARIAS_POR_CATEGORIA.get(
@@ -158,6 +176,7 @@ async def receber_bairro(update: Update, context: ContextTypes.DEFAULT_TYPE, fla
             minuta_email=resultado.get("corpo_email"),
             status="aguardando_triagem",
         )
+        atribuir_grupo(denuncia, anteriores_confirmados)
         db.session.add(denuncia)
         db.session.commit()
 

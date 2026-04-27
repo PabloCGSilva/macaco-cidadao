@@ -25,6 +25,7 @@ Descrição do usuário: {descricao}
 Bairro informado: {bairro}
 Tem foto/vídeo: {tem_midia}
 Coordenadas GPS: {coordenadas}
+Denúncias anteriores no mesmo local: {denuncias_anteriores}
 
 Responda em JSON com exatamente estes campos:
 {{
@@ -43,22 +44,36 @@ Responda em JSON com exatamente estes campos:
 Para o texto_post, use o formato:
 📍 [Bairro] | [Categoria em linguagem simples]
 [Descrição objetiva do problema em 1-2 frases]
+Se houver denúncias anteriores, indique: "⚠️ Reincidência — Nª ocorrência registrada. Protocolos anteriores: MC-XXXX, MC-YYYY."
 Registro enviado por cidadão. Verificação em andamento.
 #MacacoCidadão #BH #[Bairro]"""
 
 
-def classificar(descricao: str, bairro: str, tem_midia: bool, coordenadas: str | None) -> dict:
+def classificar(
+    descricao: str,
+    bairro: str,
+    tem_midia: bool,
+    coordenadas: str | None,
+    denuncias_anteriores: list[dict] | None = None,
+) -> dict:
+    anteriores_str = "nenhuma"
+    if denuncias_anteriores:
+        itens = [f"{d['protocolo']} ({d['criado_em']})" for d in denuncias_anteriores]
+        anteriores_str = f"{len(denuncias_anteriores)} ocorrência(s): " + ", ".join(itens)
+
     prompt = CLASSIFICACAO_PROMPT.format(
         descricao=descricao,
         bairro=bairro or "não informado",
         tem_midia="sim" if tem_midia else "não",
         coordenadas=coordenadas or "não disponível",
+        denuncias_anteriores=anteriores_str,
     )
 
     response = _client.messages.create(
-        model=config.CLAUDE_MODEL,
+        model=config.ANTHROPIC_MODEL,
         max_tokens=1500,
-        system=SYSTEM_PROMPT,
+        # Cache the static system prompt — saves ~US$0.002 per call after first request
+        system=[{"type": "text", "text": SYSTEM_PROMPT, "cache_control": {"type": "ephemeral"}}],
         messages=[{"role": "user", "content": prompt}],
     )
 

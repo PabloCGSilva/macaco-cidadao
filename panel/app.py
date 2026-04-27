@@ -8,6 +8,9 @@ from flask import Flask, render_template, redirect, url_for, request, flash, ses
 from db.models import db, Denuncia, FollowUp
 from notifier.email_sender import enviar_email_formal
 from notifier.telegram_notifier import notificar_usuario
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from data.pbh_obras import resumo_regional
 import config
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
@@ -76,7 +79,13 @@ def painel():
 @login_required
 def detalhe(denuncia_id):
     denuncia = Denuncia.query.get_or_404(denuncia_id)
-    return render_template("detalhe.html", denuncia=denuncia)
+    obras = {}
+    if denuncia.regional:
+        try:
+            obras = resumo_regional(denuncia.regional, denuncia.categoria)
+        except Exception:
+            obras = {"total": 0, "obras": [], "fonte": "", "atualizado_em": "—"}
+    return render_template("detalhe.html", denuncia=denuncia, obras=obras)
 
 
 @app.route("/denuncia/<int:denuncia_id>/aprovar", methods=["POST"])

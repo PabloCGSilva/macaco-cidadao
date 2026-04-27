@@ -10,7 +10,7 @@ Cidadãos enviam denúncias de infraestrutura via Telegram. A IA classifica, ide
 
 ## Como funciona
 
-```
+```text
 Cidadão envia foto/vídeo/texto no Telegram
     ↓
 Bot gera protocolo e extrai GPS do EXIF
@@ -39,6 +39,7 @@ Scorecard mensal: ✅ Cobrou / ⚠️ Respondeu / ❌ Ignorou
 Vereador tem mandato para toda a cidade, mas foi eleito com votos de territórios específicos. O mapeamento é eleitoral (dados TSE 2024), não administrativo.
 
 A linguagem correta:
+
 > "Vereador X, sua base eleitoral no bairro Y registrou esse problema. O que você já cobrou da Prefeitura sobre isso?"
 
 Juridicamente precisa (respeita o papel constitucional), politicamente difícil de ignorar.
@@ -48,10 +49,10 @@ Juridicamente precisa (respeita o papel constitucional), politicamente difícil 
 ## Stack
 
 | Componente | Tecnologia |
-|---|---|
+| --- | --- |
 | Bot de recebimento | [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot) 21.6 |
 | Extração GPS | Pillow + exifread |
-| Classificação + post + e-mail | Claude Haiku (`claude-haiku-4-5`) via Anthropic SDK |
+| Classificação + post + e-mail | Claude Haiku (`claude-haiku-4-5-20251001`) via Anthropic SDK |
 | Painel de moderação | Flask 3 + Flask-SQLAlchemy |
 | Banco de dados | SQLite (MVP) → PostgreSQL (produção) |
 | Follow-up scheduler | APScheduler 3.10 |
@@ -63,7 +64,7 @@ Juridicamente precisa (respeita o papel constitucional), politicamente difícil 
 
 ## Estrutura do projeto
 
-```
+```text
 macaco-cidadao/
 ├── bot/
 │   ├── handlers.py          # Fluxo de conversa Telegram (3 estados)
@@ -74,7 +75,8 @@ macaco-cidadao/
 │   └── vereador_mapper.py   # Lookup vereador por bairro (via DB)
 ├── db/
 │   ├── models.py            # Denuncia, FollowUp, Vereador
-│   └── protocolo.py         # Gerador MC-2026-XXXXX
+│   ├── protocolo.py         # Gerador MC-2026-XXXXX
+│   └── agrupamento.py       # Detecção de reincidências (GPS 200m / bairro+categoria)
 ├── notifier/
 │   ├── email_sender.py      # E-mail formal SMTP com LAI
 │   ├── telegram_notifier.py # Notifica cidadão quando publicado
@@ -84,8 +86,11 @@ macaco-cidadao/
 │   ├── templates/           # login, painel, detalhe, followups, scorecard
 │   └── static/css/style.css # UI dark theme
 ├── data/
-│   └── vereadores_bh_exemplo.json  # 10 vereadores de exemplo (substituir por TSE 2024)
+│   ├── pbh_obras.py                 # Integração Portal Dados Abertos PBH (cache 24h)
+│   ├── vereadores_bh_exemplo.json   # 10 vereadores de exemplo
+│   └── vereadores_bh_tse2024.json   # Gerado por fetch_tse_data.py (dados reais TSE)
 ├── scripts/
+│   ├── fetch_tse_data.py    # Baixa e processa dados eleitorais TSE 2024
 │   └── seed_vereadores.py   # Importa JSON de vereadores para o DB
 ├── config.py
 ├── requirements.txt
@@ -142,8 +147,8 @@ PANEL_PASSWORD=senha_segura
 # Exemplo com os dados de demonstração incluídos
 python scripts/seed_vereadores.py data/vereadores_bh_exemplo.json
 
-# Com dados reais do TSE 2024 (formato idêntico)
-python scripts/seed_vereadores.py data/vereadores_tse_2024.json
+# Com dados reais do TSE 2024
+python scripts/seed_vereadores.py data/vereadores_bh_tse2024.json
 ```
 
 ### Rodar
@@ -162,7 +167,7 @@ python run_bot.py
 ## Painel de moderação
 
 | Seção | Função |
-|---|---|
+| --- | --- |
 | **Denúncias › Triagem** | Revisar classificação da IA, editar texto do post e minuta do e-mail |
 | **Denúncias › Aprovadas** | Publicar manualmente no Instagram/X e confirmar o link |
 | **Denúncias › Publicadas** | Registrar resposta do vereador, classificar no scorecard |
@@ -170,6 +175,7 @@ python run_bot.py
 | **Scorecard** | Ranking de responsividade por vereador |
 
 Ao confirmar a publicação, o sistema dispara **simultaneamente**:
+
 1. E-mail formal ao gabinete + secretaria competente + ouvidoria da Câmara
 2. Mensagem de retorno ao cidadão via Telegram com o link do post
 
@@ -178,6 +184,7 @@ Ao confirmar a publicação, o sistema dispara **simultaneamente**:
 ## E-mail formal
 
 Todo e-mail enviado inclui:
+
 - Número de protocolo interno (`MC-2026-XXXXX`)
 - Coordenadas GPS quando disponíveis
 - Pergunta central: *"O que V.Sa. já cobrou ou pretende cobrar da Prefeitura sobre este problema?"*
@@ -192,7 +199,7 @@ Todo e-mail enviado inclui:
 Publicado todo primeiro dia do mês. Cada vereador tagado é classificado em:
 
 | Categoria | Critério |
-|---|---|
+| --- | --- |
 | ✅ Cobrou a Prefeitura | Registro público de cobrança documentada |
 | ⚠️ Respondeu sem ação | Acusou recebimento mas sem ação verificável |
 | ❌ Ignorou | Sem resposta dentro de 10 dias úteis |
@@ -212,14 +219,53 @@ Lastro documental: não é percepção, são protocolos rastreáveis.
 
 ---
 
+## Dataset de Vereadores (TSE 2024)
+
+O script `scripts/fetch_tse_data.py` processa os dados eleitorais oficiais do TSE 2024 para BH e gera `data/vereadores_bh_tse2024.json` com os candidatos reais, total de votos e regional de maior votação.
+
+```bash
+# Baixa 191 MB do TSE, processa e gera JSON com top 70 candidatos
+python scripts/fetch_tse_data.py --cache-dir ./data/tse_cache
+
+# Com geocodificação Nominatim (mais preciso, ~10 min)
+python scripts/fetch_tse_data.py --cache-dir ./data/tse_cache --geocode
+
+# Importar no banco
+python scripts/seed_vereadores.py data/vereadores_bh_tse2024.json
+```
+
+**Próximos passos manuais:** preencher `email_gabinete`, `instagram` e `bairros_base` para os 41 eleitos. Fonte: [cmbh.mg.gov.br/vereadores](https://www.cmbh.mg.gov.br/vereadores)
+
+---
+
+## Integração com Obras PBH
+
+O módulo `data/pbh_obras.py` consome o [Portal de Dados Abertos da PBH](https://dados.pbh.gov.br/dataset/obras-publicas_2) via API CKAN e retorna obras públicas da regional da denúncia.
+
+No painel de moderação, a tela de detalhe de cada denúncia exibe automaticamente os contratos e obras SUDECAP relacionados à mesma regional e categoria — permitindo ao moderador incluir no post: *"Existe contrato de manutenção desta regional — o problema persiste."*
+
+O cache é renovado a cada 24h sem necessidade de configuração adicional.
+
+---
+
+## Agrupamento de Denúncias
+
+Denúncias do mesmo local (raio de 200m por GPS, ou mesmo bairro + categoria) são automaticamente agrupadas dentro de uma janela de 90 dias. O sistema:
+
+- Passa as denúncias anteriores ao Claude Haiku antes de gerar o texto do post
+- O Claude indica reincidência no texto: *"⚠️ 2ª ocorrência registrada. Protocolo anterior: MC-XXXX"*
+- O painel exibe a sequência dentro do grupo na tela de detalhe
+
+---
+
 ## Roadmap
 
-- [ ] Integração com dados TSE 2024 (mapeamento seção eleitoral → bairro → vereador)
+- [ ] Preencher `email_gabinete` e `instagram` dos 41 vereadores eleitos no JSON TSE
 - [ ] Publicação automática no Instagram via API
 - [ ] Storage de mídia no Cloudflare R2
-- [ ] Agrupamento de denúncias do mesmo local em narrativa acumulada
 - [ ] Scorecard público como página estática (geração mensal automática)
 - [ ] Replicação para outras cidades (configuração por município)
+- [ ] Transcrição de áudio via OpenAI Whisper
 
 ---
 

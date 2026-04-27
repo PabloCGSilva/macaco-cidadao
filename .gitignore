@@ -12,3 +12,5 @@ dist/
 build/
 .DS_Store
 uploads/
+data/tse_cache/
+data/cache/

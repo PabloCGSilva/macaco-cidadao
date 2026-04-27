@@ -39,6 +39,9 @@ class Denuncia(db.Model):
     texto_post_sugerido = db.Column(db.Text)
     minuta_email = db.Column(db.Text)
     denuncia_anterior_protocolo = db.Column(db.String(20))
+    # ID da denúncia original do grupo (None = esta é a original)
+    grupo_id = db.Column(db.Integer, db.ForeignKey("denuncias.id"), nullable=True)
+    grupo_seq = db.Column(db.Integer, default=1)  # posição dentro do grupo (1, 2, 3...)
 
     # Moderação
     status = db.Column(db.String(30), default="aguardando_triagem")
