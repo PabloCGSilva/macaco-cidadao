@@ -17,6 +17,8 @@ from ai.classifier import classificar
 from ai.vereador_mapper import vereador_por_bairro
 from bot.exif_extractor import extrair_gps
 from bot.media_store import salvar_midia, hash_midia
+from bot.audio_transcriber import transcrever
+from bot.geocoder import endereco_por_coords
 import config
 
 logger = logging.getLogger(__name__)
@@ -69,6 +71,22 @@ async def receber_midia(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
         context.user_data["tipo_midia"] = "audio"
         context.user_data["arquivo_bytes"] = arquivo_bytes
         context.user_data["midia_hash"] = hash_midia(arquivo_bytes)
+        # Transcribe immediately — if successful, skip the description step
+        await msg.reply_text("🎙️ Transcrevendo áudio...")
+        transcricao = transcrever(arquivo_bytes)
+        if transcricao:
+            context.user_data["descricao"] = transcricao
+            context.user_data["transcricao_audio"] = transcricao
+            await msg.reply_text(
+                f"✅ Transcrição: _{transcricao}_\n\n📍 Em qual bairro fica o problema?",
+                parse_mode="Markdown",
+            )
+            return AGUARDANDO_BAIRRO
+        else:
+            await msg.reply_text(
+                "✅ Áudio recebido.\n\nDescreva o problema em uma frase (ex: buraco na calçada):"
+            )
+            return AGUARDANDO_DESCRICAO
     elif msg.text and not msg.text.startswith("/"):
         context.user_data["tipo_midia"] = "text"
         context.user_data["descricao"] = msg.text
@@ -152,6 +170,12 @@ async def receber_bairro(update: Update, context: ContextTypes.DEFAULT_TYPE, fla
         if tipo_midia in ("photo", "video", "audio") and context.user_data.get("arquivo_bytes"):
             arquivo_path = salvar_midia(context.user_data["arquivo_bytes"], tipo_midia, protocolo)
 
+        endereco = None
+        if context.user_data.get("latitude") and context.user_data.get("longitude"):
+            endereco = endereco_por_coords(
+                context.user_data["latitude"], context.user_data["longitude"]
+            )
+
         denuncia = Denuncia(
             protocolo=protocolo,
             telegram_user_id=str(update.effective_user.id),
@@ -159,9 +183,11 @@ async def receber_bairro(update: Update, context: ContextTypes.DEFAULT_TYPE, fla
             tipo_midia=tipo_midia,
             arquivo_path=arquivo_path,
             midia_hash=context.user_data.get("midia_hash"),
+            transcricao_audio=context.user_data.get("transcricao_audio"),
             descricao_usuario=descricao,
             latitude=context.user_data.get("latitude"),
             longitude=context.user_data.get("longitude"),
+            endereco=endereco,
             bairro=resultado.get("bairro_confirmado", bairro),
             regional=resultado.get("regional"),
             categoria=resultado.get("categoria"),

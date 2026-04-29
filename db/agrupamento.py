@@ -23,24 +23,26 @@ def _distancia_metros(lat1: float, lon1: float, lat2: float, lon2: float) -> flo
 
 def buscar_denuncias_anteriores(
     bairro: str,
-    categoria: str,
+    categoria: str = "",
     latitude: float | None = None,
     longitude: float | None = None,
 ) -> list[dict]:
-    """Returns previous complaints at same location within 90 days."""
+    """Returns previous complaints at same location within 90 days.
+
+    When categoria is empty, searches by bairro only (used as pre-filter
+    before the AI classifier confirms the category).
+    """
     corte = datetime.utcnow() - timedelta(days=JANELA_DIAS)
 
-    candidatas = (
-        Denuncia.query
-        .filter(
-            Denuncia.bairro.ilike(f"%{bairro}%"),
-            Denuncia.categoria == categoria,
-            Denuncia.status.in_(["aprovada", "publicada"]),
-            Denuncia.criado_em >= corte,
-        )
-        .order_by(Denuncia.criado_em.asc())
-        .all()
+    q = Denuncia.query.filter(
+        Denuncia.bairro.ilike(f"%{bairro}%"),
+        Denuncia.status.in_(["aprovada", "publicada"]),
+        Denuncia.criado_em >= corte,
     )
+    if categoria:
+        q = q.filter(Denuncia.categoria == categoria)
+
+    candidatas = q.order_by(Denuncia.criado_em.asc()).all()
 
     if not candidatas:
         return []

@@ -17,6 +17,7 @@ class Denuncia(db.Model):
     tipo_midia = db.Column(db.String(20))  # photo, video, audio, text
     arquivo_path = db.Column(db.String(500))
     midia_hash = db.Column(db.String(64))
+    transcricao_audio = db.Column(db.Text)
     descricao_usuario = db.Column(db.Text)
 
     # Geolocalização

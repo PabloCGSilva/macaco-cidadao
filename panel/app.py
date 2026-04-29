@@ -4,14 +4,14 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from datetime import datetime, timedelta
 from functools import wraps
-from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify
+from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify, send_from_directory
 from db.models import db, Denuncia, FollowUp
 from notifier.email_sender import enviar_email_formal
 from notifier.telegram_notifier import notificar_usuario
-import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from data.pbh_obras import resumo_regional
 import config
+
+UPLOAD_DIR = os.path.join(os.path.dirname(__file__), "..", "uploads")
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 app.secret_key = config.FLASK_SECRET_KEY
@@ -218,6 +218,12 @@ def marcar_followup_publicado(fu_id):
     db.session.commit()
     flash("Follow-up marcado como publicado.", "sucesso")
     return redirect(url_for("followups"))
+
+
+@app.route("/uploads/<path:filename>")
+@login_required
+def serve_upload(filename):
+    return send_from_directory(os.path.abspath(UPLOAD_DIR), filename)
 
 
 if __name__ == "__main__":

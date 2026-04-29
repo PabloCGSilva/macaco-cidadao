@@ -8,6 +8,33 @@
   <span class="status-badge status-{{ denuncia.status }}">{{ denuncia.status.replace('_', ' ').title() }}</span>
 </div>
 
+{% if denuncia.arquivo_path %}
+<div class="card">
+  <h3>Mídia anexada</h3>
+  {% set fname = denuncia.arquivo_path.replace('\\', '/').split('/')[-1] %}
+  {% if denuncia.tipo_midia == 'photo' %}
+    <img src="{{ url_for('serve_upload', filename=fname) }}"
+         style="max-width:100%;max-height:420px;border-radius:6px;display:block;">
+  {% elif denuncia.tipo_midia == 'video' %}
+    <video controls style="max-width:100%;border-radius:6px;">
+      <source src="{{ url_for('serve_upload', filename=fname) }}" type="video/mp4">
+    </video>
+  {% elif denuncia.tipo_midia == 'audio' %}
+    <audio controls style="width:100%;">
+      <source src="{{ url_for('serve_upload', filename=fname) }}" type="audio/ogg">
+    </audio>
+    {% if denuncia.transcricao_audio %}
+    <p style="margin-top:.75rem;color:var(--muted);font-size:.9rem">
+      🎙️ <em>{{ denuncia.transcricao_audio }}</em>
+    </p>
+    {% endif %}
+  {% endif %}
+  <p style="color:var(--muted);font-size:.75rem;margin-top:.5rem">
+    Hash SHA-256: <code>{{ denuncia.midia_hash or '—' }}</code>
+  </p>
+</div>
+{% endif %}
+
 <div class="grid-2">
   <!-- Dados da denúncia -->
   <div class="card">
