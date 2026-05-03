@@ -2,7 +2,7 @@ import json
 import os
 from db.models import Vereador, db
 
-DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "vereadores_bh.json")
+TSE_DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "vereadores_bh_tse2024.json")
 
 
 def vereador_por_bairro(bairro: str) -> Vereador | None:
@@ -27,40 +27,37 @@ def vereador_por_bairro(bairro: str) -> Vereador | None:
     return melhor
 
 
-def seed_vereadores_exemplo(app):
-    """Seeds placeholder data — replace with real TSE 2024 data."""
-    exemplos = [
-        {
-            "nome": "Vereador Exemplo Norte",
-            "partido": "PARTIDO",
-            "email_gabinete": "gabinete.norte@cmbh.mg.gov.br",
-            "instagram": "@vereador_norte",
-            "twitter": "@vereador_norte",
-            "bairros_base": ["Tupi", "Floramar", "Jardim Leblon", "Céu Azul"],
-            "votos_totais_2024": 4500,
-        },
-        {
-            "nome": "Vereador Exemplo Centro",
-            "partido": "PARTIDO",
-            "email_gabinete": "gabinete.centro@cmbh.mg.gov.br",
-            "instagram": "@vereador_centro",
-            "twitter": "@vereador_centro",
-            "bairros_base": ["Centro", "Funcionários", "Savassi", "Lourdes"],
-            "votos_totais_2024": 6200,
-        },
-    ]
+def _is_person_name(nome: str) -> bool:
+    """TSE candidate names are ALL CAPS; party/legend entries have mixed case."""
+    return bool(nome) and nome == nome.upper() and len(nome.split()) >= 2
+
+
+def seed_vereadores_tse(app):
+    """Seeds vereadores from TSE 2024 data (vereadores_bh_tse2024.json)."""
+    if not os.path.exists(TSE_DATA_FILE):
+        return
+
+    with open(TSE_DATA_FILE, encoding="utf-8") as f:
+        candidatos = json.load(f)
 
     with app.app_context():
-        if Vereador.query.count() == 0:
-            for v in exemplos:
-                vereador = Vereador(
-                    nome=v["nome"],
-                    partido=v["partido"],
-                    email_gabinete=v["email_gabinete"],
-                    instagram=v["instagram"],
-                    twitter=v["twitter"],
-                    bairros_base=json.dumps(v["bairros_base"]),
-                    votos_totais_2024=v["votos_totais_2024"],
-                )
-                db.session.add(vereador)
-            db.session.commit()
+        if Vereador.query.count() > 0:
+            return
+        for c in candidatos:
+            nome = c.get("nome", "").strip()
+            if not _is_person_name(nome):
+                continue
+            db.session.add(Vereador(
+                nome=nome,
+                partido=c.get("partido") or "",
+                email_gabinete=c.get("email_gabinete"),
+                instagram=c.get("instagram"),
+                twitter=None,
+                bairros_base=json.dumps(c.get("bairros_base", [])),
+                votos_totais_2024=c.get("votos_total", 0),
+            ))
+        db.session.commit()
+
+
+# Backward-compat alias (panel/app.py and any external callers)
+seed_vereadores_exemplo = seed_vereadores_tse

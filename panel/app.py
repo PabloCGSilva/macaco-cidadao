@@ -21,8 +21,8 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
-    from ai.vereador_mapper import seed_vereadores_exemplo
-    seed_vereadores_exemplo(app)
+    from ai.vereador_mapper import seed_vereadores_tse
+    seed_vereadores_tse(app)
 
 from notifier.scheduler import iniciar_scheduler
 _scheduler = iniciar_scheduler(app)

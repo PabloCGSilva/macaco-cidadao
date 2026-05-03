@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt pytest
+
+      - name: Run tests
+        env:
+          TELEGRAM_BOT_TOKEN: test-token
+          ANTHROPIC_API_KEY: test-key
+          SMTP_USER: test@example.com
+          SMTP_PASSWORD: test-pass
+        run: pytest tests/ -v --tb=short
