@@ -53,7 +53,8 @@ Juridicamente precisa (respeita o papel constitucional), politicamente difícil 
 | Bot de recebimento | [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot) 21.6 |
 | Extração GPS | Pillow + exifread |
 | Classificação + post + e-mail | Claude Haiku (`claude-haiku-4-5-20251001`) via Anthropic SDK |
-| Painel de moderação | Flask 3 + Flask-SQLAlchemy |
+| Painel de moderação | Flask-OpenAPI3 + Flask-SQLAlchemy |
+| API REST | flask-openapi3 4.x + Pydantic v2 (OpenAPI 3.1) |
 | Banco de dados | SQLite (MVP) → PostgreSQL (produção) |
 | Follow-up scheduler | APScheduler 3.10 |
 | Notificação ao cidadão | Telegram Bot API (HTTP direto via httpx) |
@@ -219,6 +220,30 @@ Lastro documental: não é percepção, são protocolos rastreáveis.
 
 ---
 
+## API REST
+
+O painel expõe uma API REST documentada com OpenAPI 3.1.
+
+| Endpoint | Método | Descrição |
+| --- | --- | --- |
+| `/api/v1/health` | GET | Health check (sem autenticação) |
+| `/api/v1/denuncias` | GET | Lista denúncias com filtro por status e paginação |
+| `/api/v1/denuncias/{id}` | GET | Obtém denúncia por ID |
+| `/api/v1/denuncias/{id}/aprovar` | POST | Aprova denúncia |
+| `/api/v1/denuncias/{id}/rejeitar` | POST | Rejeita denúncia (campo `motivo` obrigatório) |
+| `/api/v1/scorecard` | GET | Métricas de responsividade por vereador |
+| `/api/v1/vereadores` | GET | Lista todos os vereadores |
+| `/api/v1/vereadores/{id}/bairros` | GET | Bairros de base de um vereador |
+
+**Docs interativas:** `http://localhost:5000/openapi/`  
+**Spec JSON:** `http://localhost:5000/openapi/openapi.json`  
+**Spec YAML:** [`api/spec.yaml`](api/spec.yaml)  
+**Guia de uso:** [`api/README_API.md`](api/README_API.md)
+
+Autenticação via sessão de cookie — mesmas credenciais do painel web (`/login`).
+
+---
+
 ## Dataset de Vereadores (TSE 2024)
 
 O script `scripts/fetch_tse_data.py` processa os dados eleitorais oficiais do TSE 2024 para BH e gera `data/vereadores_bh_tse2024.json` com os candidatos reais, total de votos e regional de maior votação.
@@ -234,7 +259,7 @@ python scripts/fetch_tse_data.py --cache-dir ./data/tse_cache --geocode
 python scripts/seed_vereadores.py data/vereadores_bh_tse2024.json
 ```
 
-**Próximos passos manuais:** preencher `email_gabinete`, `instagram` e `bairros_base` para os 41 eleitos. Fonte: [cmbh.mg.gov.br/vereadores](https://www.cmbh.mg.gov.br/vereadores)
+**Dados enriquecidos (mai/2026):** `email_gabinete`, `instagram`, `telefone_gabinete` e `bairros_base` dos 41 eleitos preenchidos via scrape do [cmbh.mg.gov.br/vereadores](https://www.cmbh.mg.gov.br/vereadores). Script: `scripts/enrich_vereadores.py`.
 
 ---
 
@@ -260,7 +285,7 @@ Denúncias do mesmo local (raio de 200m por GPS, ou mesmo bairro + categoria) s�
 
 ## Roadmap
 
-- [ ] Preencher `email_gabinete` e `instagram` dos 41 vereadores eleitos no JSON TSE
+- [x] Preencher `email_gabinete` e `instagram` dos 41 vereadores eleitos no JSON TSE (dados CMBH mai/2026)
 - [ ] Publicação automática no Instagram via API
 - [ ] Storage de mídia no Cloudflare R2
 - [ ] Scorecard público como página estática (geração mensal automática)

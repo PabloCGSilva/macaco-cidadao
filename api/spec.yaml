@@ -1,0 +1,420 @@
+openapi: "3.1.0"
+info:
+  title: Macaco Cidadão API
+  version: "1.0.0"
+  description: |
+    API REST do painel de moderação cívica Macaco Cidadão.
+    Permite integração externa com o sistema de gestão de denúncias,
+    scorecard de vereadores e dados públicos dos vereadores de BH.
+
+servers:
+  - url: http://localhost:5000
+    description: Desenvolvimento local
+
+tags:
+  - name: health
+    description: Verificação de saúde da API
+  - name: denuncias
+    description: Gestão de denúncias dos cidadãos
+  - name: scorecard
+    description: Scorecard de responsividade dos vereadores
+  - name: vereadores
+    description: Dados dos vereadores eleitos em 2024
+
+paths:
+  /api/v1/health:
+    get:
+      tags: [health]
+      summary: Health check
+      operationId: health
+      security: []
+      responses:
+        "200":
+          description: API online
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+
+  /api/v1/denuncias:
+    get:
+      tags: [denuncias]
+      summary: Listar denúncias
+      operationId: listDenuncias
+      security:
+        - sessionAuth: []
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - aguardando_triagem
+              - aprovada
+              - rejeitada
+              - publicada
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: per_page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+      responses:
+        "200":
+          description: Lista paginada de denúncias
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DenunciaListResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /api/v1/denuncias/{id}:
+    get:
+      tags: [denuncias]
+      summary: Obter denúncia por ID
+      operationId: getDenuncia
+      security:
+        - sessionAuth: []
+      parameters:
+        - $ref: "#/components/parameters/DenunciaId"
+      responses:
+        "200":
+          description: Denúncia encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DenunciaResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/v1/denuncias/{id}/aprovar:
+    post:
+      tags: [denuncias]
+      summary: Aprovar denúncia
+      operationId: aprovarDenuncia
+      security:
+        - sessionAuth: []
+      parameters:
+        - $ref: "#/components/parameters/DenunciaId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AprovarRequest"
+      responses:
+        "200":
+          description: Denúncia aprovada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActionResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /api/v1/denuncias/{id}/rejeitar:
+    post:
+      tags: [denuncias]
+      summary: Rejeitar denúncia
+      operationId: rejeitarDenuncia
+      security:
+        - sessionAuth: []
+      parameters:
+        - $ref: "#/components/parameters/DenunciaId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RejeitarRequest"
+      responses:
+        "200":
+          description: Denúncia rejeitada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActionResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: Motivo obrigatório
+
+  /api/v1/scorecard:
+    get:
+      tags: [scorecard]
+      summary: Scorecard de vereadores
+      operationId: scorecard
+      security:
+        - sessionAuth: []
+      responses:
+        "200":
+          description: Lista de métricas por vereador
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ScorecardItem"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /api/v1/vereadores:
+    get:
+      tags: [vereadores]
+      summary: Listar vereadores
+      operationId: listVereadores
+      security:
+        - sessionAuth: []
+      responses:
+        "200":
+          description: Lista de vereadores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VereadorResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /api/v1/vereadores/{id}/bairros:
+    get:
+      tags: [vereadores]
+      summary: Bairros de base de um vereador
+      operationId: vereadorBairros
+      security:
+        - sessionAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Lista de bairros
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BairrosResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+components:
+  parameters:
+    DenunciaId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+
+  responses:
+    Unauthorized:
+      description: Não autenticado
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    NotFound:
+      description: Recurso não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+  securitySchemes:
+    sessionAuth:
+      type: apiKey
+      in: cookie
+      name: session
+
+  schemas:
+    HealthResponse:
+      type: object
+      required: [status, version]
+      properties:
+        status:
+          type: string
+          example: ok
+        version:
+          type: string
+          example: "1.0.0"
+
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
+
+    ActionResponse:
+      type: object
+      required: [ok, protocolo, status]
+      properties:
+        ok:
+          type: boolean
+        protocolo:
+          type: string
+        status:
+          type: string
+
+    DenunciaResponse:
+      type: object
+      required: [id, protocolo, status, criado_em]
+      properties:
+        id:
+          type: integer
+        protocolo:
+          type: string
+        status:
+          type: string
+        bairro:
+          type: string
+          nullable: true
+        regional:
+          type: string
+          nullable: true
+        categoria:
+          type: string
+          nullable: true
+        descricao_usuario:
+          type: string
+          nullable: true
+        vereador_nome:
+          type: string
+          nullable: true
+        vereador_email:
+          type: string
+          nullable: true
+        secretaria_nome:
+          type: string
+          nullable: true
+        criado_em:
+          type: string
+          format: date-time
+        aprovada_em:
+          type: string
+          format: date-time
+          nullable: true
+        publicada_em:
+          type: string
+          format: date-time
+          nullable: true
+        link_post:
+          type: string
+          nullable: true
+        email_enviado:
+          type: boolean
+
+    DenunciaListResponse:
+      type: object
+      required: [total, page, per_page, items]
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        per_page:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/DenunciaResponse"
+
+    AprovarRequest:
+      type: object
+      properties:
+        notas:
+          type: string
+          default: ""
+        minuta_email:
+          type: string
+          nullable: true
+        texto_post:
+          type: string
+          nullable: true
+
+    RejeitarRequest:
+      type: object
+      required: [motivo]
+      properties:
+        motivo:
+          type: string
+          minLength: 1
+
+    ScorecardItem:
+      type: object
+      required: [vereador, total, cobrou, respondeu_sem_acao, ignorou, pendente]
+      properties:
+        vereador:
+          type: string
+        total:
+          type: integer
+        cobrou:
+          type: integer
+        respondeu_sem_acao:
+          type: integer
+        ignorou:
+          type: integer
+        pendente:
+          type: integer
+
+    VereadorResponse:
+      type: object
+      required: [id, nome]
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        partido:
+          type: string
+          nullable: true
+        email_gabinete:
+          type: string
+          nullable: true
+        instagram:
+          type: string
+          nullable: true
+        votos_totais_2024:
+          type: integer
+          nullable: true
+        bairros_base:
+          type: string
+          nullable: true
+          description: JSON array de bairros de base
+
+    BairrosResponse:
+      type: object
+      required: [id, nome, bairros]
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        bairros:
+          type: array
+          items:
+            type: string

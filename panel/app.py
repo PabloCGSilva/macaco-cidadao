@@ -4,7 +4,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from datetime import datetime, timedelta
 from functools import wraps
-from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify, send_from_directory
+from flask import render_template, redirect, url_for, request, flash, session, jsonify, send_from_directory
+from flask_openapi3 import OpenAPI, Info
 from db.models import db, Denuncia, FollowUp
 from notifier.email_sender import enviar_email_formal
 from notifier.telegram_notifier import notificar_usuario
@@ -13,7 +14,8 @@ import config
 
 UPLOAD_DIR = os.path.join(os.path.dirname(__file__), "..", "uploads")
 
-app = Flask(__name__, template_folder="templates", static_folder="static")
+_info = Info(title="Macaco Cidadão API", version="1.0.0", description="API REST do painel de moderação cívica")
+app = OpenAPI(__name__, info=_info, template_folder="templates", static_folder="static")
 app.secret_key = config.FLASK_SECRET_KEY
 app.config["SQLALCHEMY_DATABASE_URI"] = config.DATABASE_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -23,6 +25,9 @@ with app.app_context():
     db.create_all()
     from ai.vereador_mapper import seed_vereadores_tse
     seed_vereadores_tse(app)
+
+from panel.api_routes import api_bp
+app.register_api(api_bp)
 
 from notifier.scheduler import iniciar_scheduler
 _scheduler = iniciar_scheduler(app)
