@@ -17,7 +17,11 @@ FLASK_SECRET_KEY = os.getenv("FLASK_SECRET_KEY", "dev-secret-key")
 PANEL_USERNAME = os.getenv("PANEL_USERNAME", "moderador")
 PANEL_PASSWORD = os.getenv("PANEL_PASSWORD", "senha123")
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///macaco_cidadao.db")
+_db_url = os.getenv("DATABASE_URL", "sqlite:///macaco_cidadao.db")
+# SQLAlchemy 2.x requer "postgresql://" — Heroku ainda emite "postgres://"
+if _db_url.startswith("postgres://"):
+    _db_url = _db_url.replace("postgres://", "postgresql://", 1)
+DATABASE_URL = _db_url
 
 ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
 

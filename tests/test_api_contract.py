@@ -87,6 +87,7 @@ def test_health_returns_ok(client):
     data = r.get_json()
     assert data["status"] == "ok"
     assert "version" in data
+    assert "db_ok" in data
 
 
 # ---------------------------------------------------------------------------

@@ -5,6 +5,8 @@ os.environ.setdefault("TELEGRAM_BOT_TOKEN", "test-token")
 os.environ.setdefault("ANTHROPIC_API_KEY", "test-key")
 os.environ.setdefault("SMTP_USER", "test@example.com")
 os.environ.setdefault("SMTP_PASSWORD", "test-pass")
+# Garantir que testes usem SQLite mesmo quando .env aponta para PostgreSQL
+os.environ.setdefault("DATABASE_URL", "sqlite:///:memory:")
 
 import pytest
 from flask import Flask

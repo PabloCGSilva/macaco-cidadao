@@ -41,7 +41,13 @@ def _require_login():
 
 @api_bp.get("/health", tags=[_health_tag], responses={"200": HealthResponse})
 def health():
-    return jsonify({"status": "ok", "version": "1.0.0"})
+    from sqlalchemy import text
+    try:
+        db.session.execute(text("SELECT 1"))
+        db_ok = True
+    except Exception:
+        db_ok = False
+    return jsonify({"status": "ok", "version": "1.0.0", "db_ok": db_ok})
 
 
 # ---------------------------------------------------------------------------

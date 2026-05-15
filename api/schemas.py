@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 class HealthResponse(BaseModel):
     status: str
     version: str
+    db_ok: bool
 
 
 class DenunciaListQuery(BaseModel):

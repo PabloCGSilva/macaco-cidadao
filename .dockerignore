@@ -1,0 +1,12 @@
+.env
+.git
+__pycache__
+*.pyc
+*.db
+*.sqlite
+.pytest_cache
+venv/
+.venv/
+node_modules/
+uploads/
+*.backup.json
