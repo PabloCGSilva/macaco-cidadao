@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
 
   db:
@@ -49,6 +47,21 @@ services:
     volumes:
       - media_storage:/app/uploads
 
+  backup:
+    build:
+      context: .
+      dockerfile: Dockerfile.backup
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://macaco:${POSTGRES_PASSWORD}@db:5432/macaco_cidadao
+      BACKUP_RETAIN_DAYS: ${BACKUP_RETAIN_DAYS:-7}
+    volumes:
+      - postgres_backups:/backups
+    depends_on:
+      db:
+        condition: service_healthy
+
 volumes:
   postgres_data:
+  postgres_backups:
   media_storage:

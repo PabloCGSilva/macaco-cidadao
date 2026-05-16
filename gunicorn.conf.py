@@ -1,0 +1,12 @@
+bind = "0.0.0.0:5000"
+workers = 2                 # 2 × CPU + 1 para containers pequenos
+worker_class = "sync"
+timeout = 120               # tolerante para envio de e-mail SMTP
+keepalive = 5
+max_requests = 1000
+max_requests_jitter = 100
+preload_app = True
+accesslog = "-"             # stdout para docker logs
+errorlog = "-"
+loglevel = "info"
+forwarded_allow_ips = "*"   # necessário atrás de proxy reverso

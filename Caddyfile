@@ -1,0 +1,23 @@
+{$DOMAIN} {
+    reverse_proxy panel:5000
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+
+    encode gzip
+
+    log {
+        output stdout
+        format json
+    }
+}
+
+# Health check interno sem TLS (para docker healthcheck do Caddy)
+:2019 {
+    respond /health 200
+}

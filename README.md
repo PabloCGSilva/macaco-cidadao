@@ -283,6 +283,51 @@ Denúncias do mesmo local (raio de 200m por GPS, ou mesmo bairro + categoria) s�
 
 ---
 
+## Deploy
+
+### Desenvolvimento local (Flask dev server, sem SSL)
+
+```bash
+docker compose up -d
+```
+
+### Desenvolvimento local com HTTPS (Caddy + TLS autoassinado)
+
+```bash
+docker compose -f docker-compose.yml \
+               -f docker-compose.dev.yml up -d
+```
+
+Acesse `https://localhost` — o Caddy emite certificado local automaticamente.
+
+### Produção (VPS com domínio real)
+
+```bash
+DOMAIN=macacocidadao.com.br \
+POSTGRES_PASSWORD=senha_segura \
+docker compose -f docker-compose.yml \
+               -f docker-compose.prod.yml up -d
+```
+
+O Caddy obtém e renova o certificado Let's Encrypt automaticamente.
+O painel fica acessível apenas via HTTPS; a porta 5000 não é exposta.
+
+### Backup manual
+
+```bash
+docker compose exec backup /pg_backup.sh
+docker compose exec backup ls -lh /backups/
+```
+
+### Restauração
+
+```bash
+docker compose exec backup \
+  bash /restore_backup.sh macaco_cidadao_20260515_030000.sql.gz
+```
+
+---
+
 ## Roadmap
 
 - [x] Preencher `email_gabinete` e `instagram` dos 41 vereadores eleitos no JSON TSE (dados CMBH mai/2026)

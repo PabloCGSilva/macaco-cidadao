@@ -27,3 +27,15 @@ jobs:
           SMTP_USER: test@example.com
           SMTP_PASSWORD: test-pass
         run: pytest tests/ -v --tb=short
+
+  validate-compose:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate docker-compose syntax
+        env:
+          POSTGRES_PASSWORD: ci-dummy-password
+          BACKUP_RETAIN_DAYS: 7
+        run: docker compose config --quiet

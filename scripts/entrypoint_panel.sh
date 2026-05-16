@@ -18,5 +18,5 @@ if [ -f data/vereadores_bh_tse2024.json ]; then
   python scripts/seed_vereadores.py data/vereadores_bh_tse2024.json
 fi
 
-echo "Iniciando painel..."
-exec python run_panel.py
+echo "Iniciando painel (Gunicorn)..."
+exec gunicorn -c gunicorn.conf.py "panel.app:app"
