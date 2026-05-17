@@ -105,9 +105,10 @@ def test_vereadores_unauthenticated_returns_401(client):
     assert r.status_code == 401
 
 
-def test_scorecard_unauthenticated_returns_401(client):
+def test_scorecard_publico_sem_autenticacao(client):
+    # Scorecard é público — sem auth deve retornar 200
     r = client.get("/api/v1/scorecard")
-    assert r.status_code == 401
+    assert r.status_code == 200
 
 
 # ---------------------------------------------------------------------------

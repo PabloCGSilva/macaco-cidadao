@@ -26,7 +26,6 @@ logger = logging.getLogger(__name__)
 AGUARDANDO_MIDIA, AGUARDANDO_DESCRICAO, AGUARDANDO_BAIRRO = range(3)
 
 CANAIS_REDIRECIONAMENTO = {
-    "156": "📞 Ligue 156 ou acesse o BH APP para registrar pelo canal oficial da Prefeitura.",
     "Procon": "⚖️ Este é um problema de relação de consumo. Registre no Procon: procon.mg.gov.br",
     "Polícia": "🚔 Para segurança pública, acione a Polícia Militar pelo 190 ou Delegacia.",
 }
@@ -152,7 +151,6 @@ async def receber_bairro(update: Update, context: ContextTypes.DEFAULT_TYPE, fla
         protocolo = gerar_protocolo()
 
         # Refined grouping using confirmed category from classifier
-        categoria_confirmada = resultado.get("categoria", "")
         anteriores_confirmados = buscar_denuncias_anteriores(
             bairro=resultado.get("bairro_confirmado", bairro),
             categoria=categoria_confirmada,
@@ -161,9 +159,11 @@ async def receber_bairro(update: Update, context: ContextTypes.DEFAULT_TYPE, fla
         )
 
         vereador = vereador_por_bairro(resultado.get("bairro_confirmado", bairro))
+        categoria_confirmada = resultado.get("categoria", "outros")
         secretaria_nome, secretaria_email = config.SECRETARIAS_POR_CATEGORIA.get(
-            resultado.get("categoria", "outros"), ("Ouvidoria PBH", "ouvidoria@pbh.gov.br")
+            categoria_confirmada, ("Ouvidoria PBH", "ouvidoria@pbh.gov.br")
         )
+        secretaria_slug = config.CATEGORIA_PARA_SECRETARIA_SLUG.get(categoria_confirmada, "smobi")
 
         tipo_midia = context.user_data.get("tipo_midia")
         arquivo_path = None
@@ -196,8 +196,10 @@ async def receber_bairro(update: Update, context: ContextTypes.DEFAULT_TYPE, fla
             vereador_email=vereador.email_gabinete if vereador else None,
             vereador_instagram=vereador.instagram if vereador else None,
             vereador_twitter=vereador.twitter if vereador else None,
+            vereador_whatsapp=vereador.whatsapp_gabinete if vereador else None,
             secretaria_nome=secretaria_nome,
             secretaria_email=secretaria_email,
+            secretaria_slug=secretaria_slug,
             texto_post_sugerido=resultado.get("texto_post"),
             minuta_email=resultado.get("corpo_email"),
             status="aguardando_triagem",
@@ -207,12 +209,11 @@ async def receber_bairro(update: Update, context: ContextTypes.DEFAULT_TYPE, fla
         db.session.commit()
 
     await update.message.reply_text(
-        f"✅ *Denúncia registrada!*\n\n"
-        f"Protocolo: `{protocolo}`\n"
-        f"Categoria: {resultado.get('categoria', '').replace('_', ' ').title()}\n"
-        f"Bairro: {resultado.get('bairro_confirmado', bairro)}\n\n"
-        f"Sua denúncia será revisada e, se aprovada, publicada com notificação formal.\n"
-        f"Você receberá uma mensagem com o link quando isso acontecer.",
+        f"✅ *Denúncia recebida!*\n\n"
+        f"Protocolo: `{protocolo}`\n\n"
+        f"Seu problema foi registrado e será enviado\n"
+        f"diretamente ao vereador responsável pelo seu bairro.\n\n"
+        f"Vamos cobrar uma resposta. 🐒",
         parse_mode="Markdown",
     )
     return ConversationHandler.END

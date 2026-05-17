@@ -128,6 +128,48 @@
 </div>
 {% endif %}
 
+{% if denuncia.status in ('aprovada', 'publicada') %}
+<div class="card card-highlight">
+  <h3>🎯 Ações de Pressão Direta</h3>
+  <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem">
+    {% if link_wa_vereador %}
+    <a href="{{ link_wa_vereador }}" target="_blank" class="btn btn-success"
+       onclick="fetch('/api/v1/denuncias/{{ denuncia.id }}/registrar_acao', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({acao:'whatsapp_vereador'})})">
+      📱 WhatsApp Vereador
+    </a>
+    {% else %}
+    <button class="btn" disabled title="Número não cadastrado para este vereador">📱 WhatsApp Vereador</button>
+    {% endif %}
+
+    {% if link_wa_secretaria %}
+    <a href="{{ link_wa_secretaria }}" target="_blank" class="btn btn-success"
+       onclick="fetch('/api/v1/denuncias/{{ denuncia.id }}/registrar_acao', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({acao:'whatsapp_secretaria'})})">
+      📱 WhatsApp Secretaria
+    </a>
+    {% else %}
+    <button class="btn" disabled title="Número não cadastrado para esta secretaria">📱 WhatsApp Secretaria</button>
+    {% endif %}
+
+    <button class="btn" id="btn-caption"
+       onclick="navigator.clipboard.writeText(document.getElementById('caption-text').value).then(()=>{this.textContent='✅ Copiado!';setTimeout(()=>this.textContent='📸 Caption Instagram',2000)});fetch('/api/v1/denuncias/{{ denuncia.id }}/registrar_acao', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({acao:'instagram'})})">
+      📸 Caption Instagram
+    </button>
+  </div>
+
+  <textarea id="caption-text" rows="8" readonly style="width:100%;font-size:.85rem;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:.5rem;resize:vertical">{{ caption_instagram }}</textarea>
+
+  {% if denuncia.email_enviado %}
+  <p style="margin-top:.5rem;color:var(--success,#4caf50)">📧 E-mail formal já enviado ✅</p>
+  {% endif %}
+  {% if denuncia.whatsapp_enviado %}
+  <p style="color:var(--success,#4caf50)">📱 WhatsApp registrado ✅</p>
+  {% endif %}
+  {% if denuncia.instagram_marcado %}
+  <p style="color:var(--success,#4caf50)">📸 Instagram registrado ✅</p>
+  {% endif %}
+</div>
+{% endif %}
+
 {% if denuncia.status == 'aprovada' %}
 <div class="card card-highlight">
   <h3>📢 Publicar + Enviar E-mail</h3>

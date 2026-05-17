@@ -29,6 +29,7 @@ def seed(json_path: str):
                 existing.partido = v.get("partido") or existing.partido
                 existing.email_gabinete = v.get("email_gabinete") or existing.email_gabinete
                 existing.instagram = v.get("instagram") or existing.instagram
+                existing.whatsapp_gabinete = v.get("whatsapp_gabinete") or existing.whatsapp_gabinete
                 existing.bairros_base = json.dumps(v.get("bairros_base", [])) or existing.bairros_base
                 existing.votos_totais_2024 = votos or existing.votos_totais_2024
                 updated += 1
@@ -39,6 +40,7 @@ def seed(json_path: str):
                     email_gabinete=v.get("email_gabinete"),
                     instagram=v.get("instagram"),
                     twitter=v.get("twitter"),
+                    whatsapp_gabinete=v.get("whatsapp_gabinete"),
                     bairros_base=json.dumps(v.get("bairros_base", [])),
                     votos_totais_2024=votos,
                 ))

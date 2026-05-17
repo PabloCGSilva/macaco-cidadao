@@ -56,6 +56,12 @@ class Denuncia(db.Model):
     email_enviado_em = db.Column(db.DateTime)
     email_enviado = db.Column(db.Boolean, default=False)
 
+    # Ações de pressão direta (WhatsApp / Instagram)
+    whatsapp_enviado = db.Column(db.Boolean, default=False)
+    instagram_marcado = db.Column(db.Boolean, default=False)
+    secretaria_slug = db.Column(db.String(50))
+    vereador_whatsapp = db.Column(db.String(50))
+
     # Notificação ao usuário
     telegram_notificado = db.Column(db.Boolean, default=False)
 
@@ -92,6 +98,7 @@ class Vereador(db.Model):
     email_gabinete = db.Column(db.String(200))
     instagram = db.Column(db.String(100))
     twitter = db.Column(db.String(100))
+    whatsapp_gabinete = db.Column(db.String(50))
     bairros_base = db.Column(db.Text)  # JSON list of bairros
     votos_totais_2024 = db.Column(db.Integer)
 

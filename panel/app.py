@@ -9,6 +9,8 @@ from flask_openapi3 import OpenAPI, Info
 from db.models import db, Denuncia, FollowUp
 from notifier.email_sender import enviar_email_formal
 from notifier.telegram_notifier import notificar_usuario
+from notifier.whatsapp_notifier import gerar_link_whatsapp
+from notifier.instagram_tagger import gerar_caption_instagram
 from data.pbh_obras import resumo_regional
 import config
 
@@ -83,6 +85,8 @@ def painel():
 @app.route("/denuncia/<int:denuncia_id>")
 @login_required
 def detalhe(denuncia_id):
+    import json as _json
+    from db.models import Vereador as _Vereador
     denuncia = Denuncia.query.get_or_404(denuncia_id)
     obras = {}
     if denuncia.regional:
@@ -90,7 +94,34 @@ def detalhe(denuncia_id):
             obras = resumo_regional(denuncia.regional, denuncia.categoria)
         except Exception:
             obras = {"total": 0, "obras": [], "fonte": "", "atualizado_em": "—"}
-    return render_template("detalhe.html", denuncia=denuncia, obras=obras)
+
+    # Carregar objeto Vereador para WhatsApp/Instagram
+    vereador_obj = None
+    if denuncia.vereador_nome:
+        vereador_obj = _Vereador.query.filter_by(nome=denuncia.vereador_nome).first()
+
+    # Carregar secretaria do gabinetes_pbh.json
+    secretaria_obj = None
+    if denuncia.secretaria_slug:
+        try:
+            gabinetes_path = os.path.join(os.path.dirname(__file__), "..", "data", "gabinetes_pbh.json")
+            with open(gabinetes_path, encoding="utf-8") as f:
+                gabinetes = {g["slug"]: g for g in _json.load(f)}
+            secretaria_obj = gabinetes.get(denuncia.secretaria_slug)
+        except Exception:
+            pass
+
+    links_wa = gerar_link_whatsapp(denuncia, vereador=vereador_obj, secretaria=secretaria_obj)
+    caption_ig = gerar_caption_instagram(denuncia, vereador=vereador_obj, secretaria=secretaria_obj)
+
+    return render_template(
+        "detalhe.html",
+        denuncia=denuncia,
+        obras=obras,
+        link_wa_vereador=links_wa.get("vereador"),
+        link_wa_secretaria=links_wa.get("secretaria"),
+        caption_instagram=caption_ig,
+    )
 
 
 @app.route("/denuncia/<int:denuncia_id>/aprovar", methods=["POST"])

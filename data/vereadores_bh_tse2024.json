@@ -11,7 +11,8 @@
     "email_gabinete": "ver.pabloalmeida@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1178",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "MARLI APARECIDA DE ARO FERREIRA",
@@ -29,7 +30,8 @@
     "email_gabinete": "ver.professoramarli@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1176",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "IZABELLA LOURENÇA AMORIM ROMUALDO",
@@ -44,7 +46,8 @@
     "email_gabinete": "ver.izalourenca@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1205",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "FERNANDA ELISA PEREIRA ALTOÉ",
@@ -58,7 +61,8 @@
     "email_gabinete": "ver.fernandapereira@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1159",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "MARCELA DE LACERDA TRÓPIA",
@@ -75,7 +79,8 @@
     "email_gabinete": "ver.marcelatropia@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1168",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "PEDRO FARAH ROUSSEFF",
@@ -93,7 +98,8 @@
     "email_gabinete": "ver.pedrorousseff@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1182",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "FLAVIA FERREIRA BORJA PINTO",
@@ -115,7 +121,8 @@
     "email_gabinete": "ver.flaviaborja@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1184",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "WILI DOS SANTOS",
@@ -133,7 +140,8 @@
     "email_gabinete": "ver.vile@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1418",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "UNER AUGUSTO DE CARVALHO ALVARENGA",
@@ -148,7 +156,8 @@
     "email_gabinete": "ver.uneraugusto@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1188",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "IRLAN CHAVES DE OLIVEIRA MELO",
@@ -162,7 +171,8 @@
     "email_gabinete": "ver.irlanmelo@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1153",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "WAGNER MARIANO JUNIOR",
@@ -179,7 +189,8 @@
     "email_gabinete": "ver.juninholoshermanos@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1151",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "WAGNER DE JESUS FERREIRA",
@@ -194,7 +205,8 @@
     "email_gabinete": "ver.wagnerferreira@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3472-9077",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "BRUNO ABREU GOMES",
@@ -213,7 +225,8 @@
     "email_gabinete": "ver.brunopedralva@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3472-9193",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "LUCAS DO CARMO NAVARRO",
@@ -231,7 +244,8 @@
     "email_gabinete": "ver.lucasganem@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1157",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "OSVALDO LOPES DE OLIVEIRA JUNIOR",
@@ -249,7 +263,8 @@
     "email_gabinete": "ver.osvaldolopes@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1352",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "ELIZETE LOIDE GONÇALVES TAVARES",
@@ -268,7 +283,8 @@
     "email_gabinete": "ver.loidegoncalves@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1155",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "LUIZA BORGES DULCI",
@@ -286,7 +302,8 @@
     "email_gabinete": "ver.luizadulci@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1128",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "BRAULIO ALVES SILVA LARA",
@@ -304,7 +321,8 @@
     "email_gabinete": "ver.brauliolara@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1307",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "JOSE DE JESUS FERREIRA",
@@ -318,7 +336,8 @@
     "email_gabinete": "ver.joseferreira@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1145",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "EDMAR MARTINS CABRAL DA CRUZ",
@@ -338,7 +357,8 @@
     "email_gabinete": "ver.edmarbranco@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1126",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "MARIA APARECIDA VILHENA FALABELLA",
@@ -355,7 +375,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "JULIANO LOPES LOBATO",
@@ -369,7 +390,8 @@
     "email_gabinete": "ver.julianolopes@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1301",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "WANDERLEY DE ARAUJO PORTO FILHO",
@@ -386,7 +408,8 @@
     "email_gabinete": "ver.wanderleyporto@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1191",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "BRUNO MARTUCHELE DE SALES",
@@ -400,7 +423,8 @@
     "email_gabinete": "ver.brunomiranda@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1330",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "MARCOS ANTÔNIO CRISPIM",
@@ -415,7 +439,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "ENEDINO JOSÉ DE ARRUDA",
@@ -432,7 +457,8 @@
     "email_gabinete": "ver.arruda@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1305",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "CLAUDIO MOTA CAMPOS",
@@ -451,7 +477,8 @@
     "email_gabinete": "ver.claudiodomundonovo@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1413",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "HÉLIO MEDEIROS CORREA",
@@ -466,7 +493,8 @@
     "email_gabinete": "ver.heliodafarmacia@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1186",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "HELTON VIEIRA FERNANDES JUNIOR",
@@ -481,7 +509,8 @@
     "email_gabinete": "ver.heltonjunior@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3472-9355",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "RUBEM RODRIGUES DE OLIVEIRA JUNIOR",
@@ -494,7 +523,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "MILTON DE FREITAS CARVALHO JÚNIOR",
@@ -508,7 +538,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "JANAINA ESTER CARDOSO",
@@ -522,7 +553,8 @@
     "email_gabinete": "ver.janainacardoso@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1202",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "PEDRO LUIZ NEVES VICTER ANANIAS",
@@ -538,7 +570,8 @@
     "email_gabinete": "ver.pedropatrus@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1323",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "CLEITON XAVIER DA SILVA",
@@ -555,7 +588,8 @@
     "email_gabinete": "ver.cleitonxavier@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1147",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "CIRO DANIEL DE SOUZA PEREIRA DA SILVA",
@@ -571,7 +605,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "BRENO EDUARDO NEVES NOLASCO",
@@ -589,7 +624,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "JALYSON MAYCON GONCALVES",
@@ -606,7 +642,8 @@
     "email_gabinete": "ver.sargentojalyson@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-9360",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "GLAUTON SANTIAGO FÉLIX DE JESUS",
@@ -620,7 +657,8 @@
     "email_gabinete": "ver.maninhofelix@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3472-9240",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "CHRISTIAN AQUINO COTA",
@@ -636,7 +674,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "FERNANDO LUIZ COSTA MARCIANO",
@@ -649,7 +688,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "JUHLIA ANDRÉ SANTOS",
@@ -667,7 +707,8 @@
     "email_gabinete": "ver.juhliasantos@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1420",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "RUDSON FELIPE DA PAIXÃO",
@@ -685,7 +726,8 @@
     "email_gabinete": "ver.rudsonpaixao@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1200",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "ROBERTO ELBO GONÇALVES",
@@ -701,7 +743,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "MICHELLY CAROLINE LUIZ PEREIRA DE SIQUEIRA",
@@ -715,7 +758,8 @@
     "email_gabinete": "ver.dramichellysiqueira@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3472-9055",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "LUANA DE LIMA SOUZA",
@@ -731,7 +775,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "CESAR AUGUSTO CUNHA DIAS",
@@ -747,7 +792,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "MARILDA DE CASTRO PORTELA",
@@ -763,7 +809,8 @@
     "email_gabinete": "ver.marildaportela@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1172",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "DIEGO DE SOUZA SANCHES",
@@ -780,7 +827,8 @@
     "email_gabinete": "ver.diegosanches@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1426",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "JOÃO ANTONIO CORDEIRO FERNANDES",
@@ -798,7 +846,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "LEONARDO ÂNGELO DA SILVA",
@@ -818,7 +867,8 @@
     "email_gabinete": "ver.leonardoangelo@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1166",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "RAMON BAPTISTA BIBIANO",
@@ -833,7 +883,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "CLAUDINEY ALVES",
@@ -846,7 +897,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "GIVANILDO RODRIGUES",
@@ -863,7 +915,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "DAIANE DIAS COSTA",
@@ -878,7 +931,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "THIAGO GALDINO DE ARAUJO",
@@ -893,7 +947,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "WAGNER MESSIAS SILVA",
@@ -906,7 +961,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "NARA LUCIA DE PAULA FAN",
@@ -923,7 +979,8 @@
     "email_gabinete": "ver.professoranara@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-1150",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "PABLO TIAGO DE PAULO",
@@ -941,7 +998,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "WILSON MELO JUNIOR",
@@ -955,7 +1013,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "MARIA DA CONSOLACAO ROCHA",
@@ -969,7 +1028,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "CELIO DA ASSUNÇÃO FROIS",
@@ -983,7 +1043,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "REINALDO OLIVEIRA BATISTA",
@@ -1001,7 +1062,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "LEONARDO JOSÉ RODRIGUES MARTINS",
@@ -1019,7 +1081,8 @@
     "email_gabinete": "ver.tileleo@cmbh.mg.gov.br",
     "telefone_gabinete": "(31) 3555-9013",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   },
   {
     "nome": "DÁRIO RICARDO BRAGA DE MOURA",
@@ -1033,7 +1096,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "AUTAIR GOMES PEREIRA",
@@ -1046,7 +1110,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "HENRIQUE HIGÍDIO BRAGA",
@@ -1059,7 +1124,8 @@
     "instagram": null,
     "email_gabinete": null,
     "telefone_gabinete": null,
-    "eleito": false
+    "eleito": false,
+    "whatsapp_gabinete": null
   },
   {
     "nome": "MOZAIR JOSÉ BRAGA",
@@ -1076,6 +1142,7 @@
     "instagram": "nenemdafarmaciaoficial",
     "telefone_gabinete": "(31) 3555-1161",
     "eleito": true,
-    "fonte": "cmbh_scrape_2026"
+    "fonte": "cmbh_scrape_2026",
+    "whatsapp_gabinete": null
   }
 ]

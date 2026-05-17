@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "gabinete_prefeito",
+    "nome": "Gabinete do Prefeito — Fuad Noman",
+    "cargo": "Prefeito de Belo Horizonte",
+    "whatsapp": null,
+    "email": "gabinete@pbh.gov.br",
+    "instagram": "fuadnoman",
+    "twitter_x": "fuadnoman"
+  },
+  {
+    "slug": "smobi",
+    "nome": "Secretaria de Obras e Infraestrutura",
+    "sigla": "SMOBI",
+    "whatsapp": null,
+    "email": "smobi@pbh.gov.br",
+    "instagram": "pbhoficial",
+    "categorias": ["buraco", "pavimentação", "calçada", "obra", "iluminação", "drenagem"]
+  },
+  {
+    "slug": "bhtrans",
+    "nome": "BHTrans",
+    "sigla": "BHTrans",
+    "whatsapp": null,
+    "email": "atendimento@bhtrans.pbh.gov.br",
+    "instagram": "bhtrans",
+    "categorias": ["trânsito", "sinalização", "semáforo", "faixa", "ônibus", "ponto"]
+  },
+  {
+    "slug": "slu",
+    "nome": "Superintendência de Limpeza Urbana",
+    "sigla": "SLU",
+    "whatsapp": null,
+    "email": "slu@pbh.gov.br",
+    "instagram": "slubh",
+    "categorias": ["lixo", "entulho", "limpeza", "coleta"]
+  },
+  {
+    "slug": "smma",
+    "nome": "Secretaria de Meio Ambiente",
+    "sigla": "SMMA",
+    "whatsapp": null,
+    "email": "smma@pbh.gov.br",
+    "instagram": "meioambientebh",
+    "categorias": ["árvore", "poda", "parque", "praça", "poluição", "animal"]
+  }
+]

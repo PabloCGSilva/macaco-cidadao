@@ -53,5 +53,19 @@ SECRETARIAS_POR_CATEGORIA = {
 
 OUVIDORIA_CAMARA_EMAIL = "ouvidoria@cmbh.mg.gov.br"
 
+# Mapeamento categoria → slug de gabinete em data/gabinetes_pbh.json
+CATEGORIA_PARA_SECRETARIA_SLUG = {
+    "buraco_pavimento": "smobi",
+    "iluminacao_publica": "slu",
+    "lixo_entulho": "slu",
+    "calcada_acessibilidade": "smobi",
+    "obra_irregular": "smobi",
+    "arvore_risco": "smma",
+    "enchente_drenagem": "smobi",
+    "transporte_onibus": "bhtrans",
+    "pichacao_vandalismo": "smobi",
+    "outros": "smobi",
+}
+
 FOLLOW_UP_DIAS_ALERTA = 3
 FOLLOW_UP_DIAS_COBRANCA = 10

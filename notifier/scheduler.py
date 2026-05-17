@@ -50,12 +50,16 @@ def verificar_followups(app):
 
             # 3-day alert (calendar days)
             if dias_corridos >= DIAS_ALERTA and not _ja_tem_followup(d.id, "alerta_3d"):
+                scorecard_url = f"https://macacocidadao.com.br/scorecard/{d.id}"
                 fu = FollowUp(
                     denuncia_id=d.id,
                     tipo="alerta_3d",
                     texto=(
-                        f"3 dias sem resposta do vereador {d.vereador_nome or ''}. "
-                        f"Protocolo {d.protocolo} — {d.bairro}."
+                        f"📢 Ainda sem resposta sobre seu problema em {d.bairro or 'BH'}.\n\n"
+                        f"Já enviamos ao vereador {d.vereador_nome or 'responsável'}.\n"
+                        f"Vamos intensificar a cobrança.\n\n"
+                        f"Você pode ajudar compartilhando:\n"
+                        f"👉 {scorecard_url}"
                     ),
                 )
                 db.session.add(fu)
@@ -67,7 +71,7 @@ def verificar_followups(app):
                     denuncia_id=d.id,
                     tipo="cobranca_10d",
                     texto=(
-                        f"10 dias úteis sem resposta — {d.vereador_nome or 'vereador não identificado'}. "
+                        f"⏰ 10 dias úteis sem resposta — {d.vereador_nome or 'vereador não identificado'}. "
                         f"Protocolo {d.protocolo} — {d.bairro}. "
                         f"Classificar como ❌ Ignorou no scorecard."
                     ),
