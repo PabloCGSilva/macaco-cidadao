@@ -1,3 +1,5 @@
+# Overlay de produção: Caddy com Let's Encrypt + sem portas expostas no panel.
+# Uso: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 services:
   caddy:
     image: caddy:2-alpine
@@ -19,9 +21,6 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-
-  panel:
-    ports: []
 
 volumes:
   caddy_data:

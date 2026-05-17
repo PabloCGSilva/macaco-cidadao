@@ -1,4 +1,10 @@
+# Overlay de desenvolvimento com HTTPS via Caddy + TLS autoassinado.
+# Uso: docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
 services:
+  panel:
+    ports:
+      - "5000:5000"   # acesso direto além do Caddy
+
   caddy:
     image: caddy:2-alpine
     ports:

@@ -285,10 +285,16 @@ Denúncias do mesmo local (raio de 200m por GPS, ou mesmo bairro + categoria) s�
 
 ## Deploy
 
-### Desenvolvimento local (Flask dev server, sem SSL)
+O `docker-compose.yml` é o arquivo base — **sem portas expostas** para
+o painel. As portas são adicionadas pelos overlays de acordo com o ambiente.
+
+### Desenvolvimento local (HTTP, porta 5000 direta)
+
+`docker-compose.override.yml` é carregado automaticamente:
 
 ```bash
 docker compose up -d
+# painel em http://localhost:5000
 ```
 
 ### Desenvolvimento local com HTTPS (Caddy + TLS autoassinado)
@@ -296,9 +302,8 @@ docker compose up -d
 ```bash
 docker compose -f docker-compose.yml \
                -f docker-compose.dev.yml up -d
+# painel em https://localhost (certificado autoassinado pelo Caddy)
 ```
-
-Acesse `https://localhost` — o Caddy emite certificado local automaticamente.
 
 ### Produção (VPS com domínio real)
 
@@ -309,8 +314,8 @@ docker compose -f docker-compose.yml \
                -f docker-compose.prod.yml up -d
 ```
 
-O Caddy obtém e renova o certificado Let's Encrypt automaticamente.
-O painel fica acessível apenas via HTTPS; a porta 5000 não é exposta.
+Nenhuma porta do painel é exposta diretamente; tudo passa pelo Caddy.
+Let's Encrypt provisionado automaticamente após o DNS propagar.
 
 ### Backup manual
 

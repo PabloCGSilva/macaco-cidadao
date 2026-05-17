@@ -14,8 +14,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
-    ports:
-      - "5433:5432"   # 5432 pode estar em uso localmente; acesse via localhost:5433
 
   panel:
     build:
@@ -25,8 +23,6 @@ services:
     env_file: .env
     environment:
       DATABASE_URL: postgresql://macaco:${POSTGRES_PASSWORD}@db:5432/macaco_cidadao
-    ports:
-      - "5000:5000"
     depends_on:
       db:
         condition: service_healthy

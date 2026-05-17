@@ -1,0 +1,10 @@
+# Carregado automaticamente por `docker compose up` em desenvolvimento local.
+# NÃO use em produção — use docker-compose.prod.yml em seu lugar.
+services:
+  db:
+    ports:
+      - "5433:5432"   # acesso local ao PostgreSQL para debug
+
+  panel:
+    ports:
+      - "5000:5000"   # painel direto sem proxy reverso

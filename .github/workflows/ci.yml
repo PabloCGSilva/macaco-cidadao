@@ -34,8 +34,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate docker-compose syntax
+      - name: Validate base + dev-override syntax
         env:
-          POSTGRES_PASSWORD: ci-dummy-password
+          POSTGRES_PASSWORD: ci-dummy
           BACKUP_RETAIN_DAYS: 7
+          DOMAIN: localhost
         run: docker compose config --quiet
+
+      - name: Validate prod overlay syntax
+        env:
+          POSTGRES_PASSWORD: ci-dummy
+          BACKUP_RETAIN_DAYS: 7
+          DOMAIN: ci.example.com
+        run: docker compose -f docker-compose.yml -f docker-compose.prod.yml config --quiet
